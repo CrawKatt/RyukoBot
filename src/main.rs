@@ -19,7 +19,10 @@ borrowing, closures, condicionales, constantes,
 enums, for, funciones, generics,
 if_let, iterators, lifetimes, loop,
 macros, match, metodos, modulos,
-operadores, option, ownership,
+operadores, option, ownership, result,
+return, scopes, shadowing, slices,
+strings, struct, tipos_de_datos, traits,
+tuplas, vectores, while,
 )]
 struct General;
 

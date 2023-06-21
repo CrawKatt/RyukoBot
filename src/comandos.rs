@@ -163,3 +163,87 @@ async fn ownership(ctx: &Context, msg: &Message) -> CommandResult {
 
     Ok(())
 }
+
+#[command]
+async fn result(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, RESULT).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn r#return(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, RETURN).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn scopes(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, SCOPES).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn shadowing(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, SHADOWING).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn slices(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, SLICES).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn strings(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, STRING).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn r#struct(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, STRUCT).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn tipos_de_datos(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, TIPOS_DE_DATOS).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn traits(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, TRAITS).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn tuplas(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, TUPLAS).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn vectores(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, VECTORES).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn r#while(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http, WHILE).await?;
+
+    Ok(())
+}

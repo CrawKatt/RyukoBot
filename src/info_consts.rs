@@ -423,3 +423,259 @@ En este ejemplo, tenemos una función tomar_prestado que toma una referencia a u
 La referencia s se presta a la función tomar_prestado, pero no se libera de la memoria cuando sale \
 del scope, ya que no es el dueño del valor.
 ";
+
+pub const RESULT: &str = "
+# Result
+Result es un tipo de dato genérico que nos permite representar la posibilidad de que una operación \
+falle.
+### Ejemplo en Rust:
+```rust
+fn main() {
+    let resultado = dividir(10, 2);
+
+    match resultado {
+        Ok(x) => println!(\"El resultado es: {}\", x),
+        Err(e) => println!(\"Error: {}\", e),
+    }
+}
+
+fn dividir(dividendo: i32, divisor: i32) -> Result<i32, String> {
+    if divisor == 0 {
+        Err(String::from(\"No se puede dividir entre 0\"))
+    } else {
+        Ok(dividendo / divisor)
+    }
+}
+```
+";
+
+pub const RETURN: &str = "
+# Return
+La palabra clave return se utiliza para devolver un valor de una función.
+### Ejemplo en Rust:
+```rust
+fn main() {
+    let resultado = sumar(5, 5);
+    println!(\"El resultado es: {}\", resultado);
+}
+
+fn sumar(x: i32, y: i32) -> i32 {
+    return x + y;
+}
+```
+";
+
+pub const SCOPES: &str = "
+# Scopes
+Los scopes son el alcance que tienen las variables en nuestro código.
+### Ejemplo en Rust:
+```rust
+fn main() {
+    let x = 5; // x entra en el scope
+
+    { // Inicio de un nuevo scope
+        let y = 10; // y entra en el scope
+        println!(\"{}\", x); // x está disponible aquí
+        println!(\"{}\", y); // y también está disponible aquí
+    } // y sale del scope y se libera de la memoria
+
+    println!(\"{}\", x); // x está disponible aquí
+    println!(\"{}\", y); // y no está disponible aquí
+}
+```
+";
+
+pub const SHADOWING: &str = "
+# Shadowing
+Shadowing es una característica de Rust que nos permite declarar una variable con el mismo nombre \
+que otra variable en un scope superior.
+### Ejemplo en Rust:
+```rust
+fn main() {
+    let x = 5;
+
+    let x = x + 1;
+
+    let x = x * 2;
+
+    println!(\"El valor de x es: {}\", x);
+}
+```
+";
+
+pub const SLICES: &str = "
+# Slices
+Los slices son una característica de Rust que nos permite tomar prestada una porción de un \
+contenedor.
+### Ejemplo en Rust:
+```rust
+fn main() {
+    let slice = String::from(\"Hola, mundo\");
+
+    let hola = &slice[0..5];
+    let mundo = &slice[7..12];
+
+    println!(\"El valor de hola es: {}\", hola);
+    println!(\"El valor de mundo es: {}\", mundo);
+}
+```
+";
+
+pub const STRING: &str = "
+# String
+String es un tipo de dato que nos permite almacenar texto.
+### Ejemplo en Rust:
+```rust
+fn main() {
+    let texto = String::from(\"Hola, mundo\");
+    println!(\"{}\", texto);
+}
+```
+";
+
+pub const STRUCT: &str = "
+# Struct
+Struct es una característica de Rust que nos permite crear nuestros propios tipos de datos.
+### Ejemplo en Rust:
+```rust
+struct Persona {
+    nombre: String,
+    edad: u8,
+}
+
+fn main() {
+    let persona = Persona {
+        nombre: String::from(\"Juan\"),
+        edad: 25,
+    };
+
+    println!(\"{} tiene {} años\", persona.nombre, persona.edad);
+}
+```
+";
+
+pub const TIPOS_DE_DATOS: &str = "
+# Tipos de Datos
+En Rust existen varios tipos de datos, algunos de los más comunes son:
+
+- Enteros: representan números enteros y se dividen en i8, i16, i32, i64, i128
+
+- Enteros sin signo: representan números enteros y se dividen en u8, u16, u32, u64, u128
+
+- Flotantes: representan números decimales y se dividen en f32 y f64
+
+- Booleanos: representan valores verdadero/falso y se definen como bool
+
+- Caracteres: representan un solo carácter y se definen como char
+
+- Strings: representan una cadena de caracteres y se definen como String o &str
+
+Estos son solo algunos de los tipos de datos que puedes encontrar en Rust. \
+Cada uno tiene sus propias características y se utilizan para diferentes propósitos en la \
+programación.
+";
+
+pub const TRAITS: &str = "
+# Traits
+Los traits son una característica de Rust que nos permite definir comportamientos que pueden \
+implementar diferentes tipos de datos.
+### Ejemplo en Rust:
+```rust
+struct Persona {
+    nombre: String,
+    edad: u8,
+}
+
+trait Saludar {
+    fn saludar(&self);
+}
+
+impl Saludar for Persona {
+    fn saludar(&self) {
+        println!(\"Hola, mi nombre es {} y tengo {} años\", self.nombre, self.edad);
+    }
+}
+
+fn main() {
+    let persona = Persona {
+        nombre: String::from(\"Juan\"),
+        edad: 25,
+    };
+
+    persona.saludar();
+}
+```
+";
+
+pub const TUPLAS: &str = "
+# Tuplas
+Las Tuplas son similares a los Arrays, pero con la diferencia de que pueden almacenar distintos
+tipos de datos. En Rust, las tuplas se definen con paréntesis y separando cada dato con una coma
+### Ejemplo en Rust:
+```rust
+fn main() {
+    let tupla = (1, \"Hola\", true);
+
+    println!(\"{}\", tupla.0);
+    println!(\"{}\", tupla.1);
+    println!(\"{}\", tupla.2);
+}
+```
+## Consejo
+En Rust, las Tuplas se rigen por la regla de los índices. A cada elemento le corresponde un índice
+y los índices empiezan desde el 0.
+Si tomamos nuestro ejemplo el índice en dicho ejemplo es:
+```
+0 -> 1
+1 -> 2
+2 -> 3
+3 -> 4
+4 -> 5
+```
+";
+
+pub const VECTORES: &str = "
+# Vectores
+Los Vectores son similares a los Arrays, pero con la diferencia de que pueden almacenar distintos \
+tipos de datos. En Rust, los Vectores se definen con la macro `vec!` y separando cada dato con una \
+coma.
+### Ejemplo en Rust:
+```rust
+fn main() {
+    let vector = vec![1, 2, 3, 4, 5];
+
+    println!(\"{}\", vector[0]);
+    println!(\"{}\", vector[1]);
+    println!(\"{}\", vector[2]);
+    println!(\"{}\", vector[3]);
+    println!(\"{}\", vector[4]);
+}
+```
+## Consejo
+Consejo: En Rust, los Vectores se rigen por la regla de los índices. A cada elemento le \
+corresponde un índice y los índices comienzan en cero.
+Si tomamos nuestro ejemplo el índice en dicho ejemplo es:
+```
+0 -> 1
+1 -> 2
+2 -> 3
+3 -> 4
+4 -> 5
+```
+";
+
+pub const WHILE: &str = "
+# While
+El ciclo while se usa para ejecutar un bloque de código mientras una condición sea verdadera.
+### Ejemplo en Rust:
+```rust
+fn main() {
+    let mut x = 1;
+
+    while x <= 5 {
+        println!(\"{}\", x);
+        x += 1;
+    }
+}
+```
+";
