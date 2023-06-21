@@ -1,4 +1,6 @@
 mod comandos;
+mod info_consts;
+
 use comandos::*;
 
 use std::env;
@@ -11,7 +13,14 @@ use serenity::framework::standard::{
 use serenity::prelude::*;
 
 #[group]
-#[commands(ping, help, variables)]
+#[commands(
+ping, help, variables, array,
+borrowing, closures, condicionales, constantes,
+enums, for, funciones, generics,
+if_let, iterators, lifetimes, loop,
+macros, match, metodos, modulos,
+operadores, option, ownership,
+)]
 struct General;
 
 struct Handler;
