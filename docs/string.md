@@ -1,0 +1,10 @@
+# String
+String es un tipo de dato que nos permite almacenar texto.
+### Ejemplo en Rust:
+```rust
+fn main() {
+    let texto = String::from("Hola, mundo");
+    println!("{}", texto);
+}
+```
+
