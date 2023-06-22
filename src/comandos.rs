@@ -1,7 +1,7 @@
 use serenity::framework::standard::{macros::command, CommandResult};
 use serenity::model::channel::Message;
 use serenity::prelude::*;
-use crate::info_consts::*;
+use std::fs::read_to_string;
 
 #[command]
 async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
@@ -12,238 +12,272 @@ async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
 
 #[command]
 async fn help(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, HELP_MESSAGE).await?;
+    let help = read_to_string("docs/help.md").unwrap();
+    msg.channel_id.say(&ctx.http, help).await?;
 
     Ok(())
 }
 
 #[command]
 async fn variables(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, VARIABLES).await?;
+    let variables = read_to_string("docs/variables.md").unwrap();
+    msg.channel_id.say(&ctx.http, variables).await?;
 
     Ok(())
 }
 
 #[command]
 async fn array(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, ARRAYS).await?;
+    let arrays = read_to_string("docs/arrays.md").unwrap();
+    msg.channel_id.say(&ctx.http, arrays).await?;
 
     Ok(())
 }
 
 #[command]
 async fn borrowing(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, BORROWING).await?;
+    let borrowing = read_to_string("docs/borrowing.md").unwrap();
+    msg.channel_id.say(&ctx.http, borrowing).await?;
 
     Ok(())
 }
 
 #[command]
 async fn closures(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, CLOSURES).await?;
+    let closures = read_to_string("docs/closures.md").unwrap();
+    msg.channel_id.say(&ctx.http, closures).await?;
 
     Ok(())
 }
 
 #[command]
 async fn condicionales(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, CONDICIONALES).await?;
+    let condicionales = read_to_string("docs/condicionales.md").unwrap();
+    msg.channel_id.say(&ctx.http, condicionales).await?;
 
     Ok(())
 }
 
 #[command]
 async fn constantes(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, CONSTANTES).await?;
+    let constantes = read_to_string("docs/constantes.md").unwrap();
+    msg.channel_id.say(&ctx.http, constantes).await?;
 
     Ok(())
 }
 
 #[command]
 async fn enums(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, ENUMS).await?;
+    let enums = read_to_string("docs/enums.md").unwrap();
+    msg.channel_id.say(&ctx.http, enums).await?;
 
     Ok(())
 }
 
 #[command]
 async fn r#for(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, FOR).await?;
+    let for_data = read_to_string("docs/for.md").unwrap();
+    msg.channel_id.say(&ctx.http, for_data).await?;
 
     Ok(())
 }
 
 #[command]
 async fn funciones(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, FUNCIONES).await?;
+    let funciones = read_to_string("docs/funciones.md").unwrap();
+    msg.channel_id.say(&ctx.http, funciones).await?;
 
     Ok(())
 }
 
 #[command]
 async fn generics(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, GENERICS).await?;
+    let generics = read_to_string("docs/generics.md").unwrap();
+    msg.channel_id.say(&ctx.http, generics).await?;
 
     Ok(())
 }
 
 #[command]
 async fn if_let(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, IF_LET).await?;
+    let if_let = read_to_string("docs/if_let.md").unwrap();
+    msg.channel_id.say(&ctx.http, if_let).await?;
 
     Ok(())
 }
 
 #[command]
 async fn iterators(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, ITERATORS).await?;
+    let iterators = read_to_string("docs/iterators.md").unwrap();
+    msg.channel_id.say(&ctx.http, iterators).await?;
 
     Ok(())
 }
 
 #[command]
 async fn lifetimes(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, LIFETIMES).await?;
+    let lifetimes = read_to_string("docs/lifetimes.md").unwrap();
+    msg.channel_id.say(&ctx.http, lifetimes).await?;
 
     Ok(())
 }
 
 #[command]
 async fn r#loop(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, LOOP).await?;
+    let loop_data = read_to_string("docs/loop.md").unwrap();
+    msg.channel_id.say(&ctx.http, loop_data).await?;
 
     Ok(())
 }
 
 #[command]
 async fn macros(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, MACROS).await?;
+    let macros = read_to_string("docs/macros.md").unwrap();
+    msg.channel_id.say(&ctx.http, macros).await?;
 
     Ok(())
 }
 
 #[command]
 async fn r#match(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, MATCH).await?;
+    let match_data = read_to_string("docs/match.md").unwrap();
+    msg.channel_id.say(&ctx.http, match_data).await?;
 
     Ok(())
 }
 
 #[command]
 async fn metodos(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, METODOS).await?;
+    let metodos = read_to_string("docs/metodos.md").unwrap();
+    msg.channel_id.say(&ctx.http, metodos).await?;
 
     Ok(())
 }
 
 #[command]
 async fn modulos(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, MODULOS).await?;
+    let modulos = read_to_string("docs/modulos.md").unwrap();
+    msg.channel_id.say(&ctx.http, modulos).await?;
 
     Ok(())
 }
 
 #[command]
 async fn operadores(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, OPERADORES).await?;
+    let operadores = read_to_string("docs/operadores.md").unwrap();
+    msg.channel_id.say(&ctx.http, operadores).await?;
 
     Ok(())
 }
 
 #[command]
 async fn option(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, OPTION).await?;
+    let option = read_to_string("docs/option.md").unwrap();
+    msg.channel_id.say(&ctx.http, option).await?;
 
     Ok(())
 }
 
 #[command]
 async fn ownership(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, OWNERSHIP).await?;
+    let ownership = read_to_string("docs/ownership.md").unwrap();
+    msg.channel_id.say(&ctx.http, ownership).await?;
 
     Ok(())
 }
 
 #[command]
 async fn result(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, RESULT).await?;
+    let result = read_to_string("docs/result.md").unwrap();
+    msg.channel_id.say(&ctx.http, result).await?;
 
     Ok(())
 }
 
 #[command]
 async fn r#return(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, RETURN).await?;
+    let return_data = read_to_string("docs/return.md").unwrap();
+    msg.channel_id.say(&ctx.http, return_data).await?;
 
     Ok(())
 }
 
 #[command]
 async fn scopes(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, SCOPES).await?;
+    let scopes = read_to_string("docs/scopes.md").unwrap();
+    msg.channel_id.say(&ctx.http, scopes).await?;
 
     Ok(())
 }
 
 #[command]
 async fn shadowing(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, SHADOWING).await?;
+    let shadowing: String = read_to_string("docs/shadowing.md").unwrap();
+    msg.channel_id.say(&ctx.http, shadowing).await?;
 
     Ok(())
 }
 
 #[command]
 async fn slices(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, SLICES).await?;
+    let slices = read_to_string("docs/slices.md").unwrap();
+    msg.channel_id.say(&ctx.http, slices).await?;
 
     Ok(())
 }
 
 #[command]
 async fn strings(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, STRING).await?;
+    let strings = read_to_string("docs/strings.md").unwrap();
+    msg.channel_id.say(&ctx.http, strings).await?;
 
     Ok(())
 }
 
 #[command]
 async fn r#struct(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, STRUCT).await?;
+    let struct_data = read_to_string("docs/struct.md").unwrap();
+    msg.channel_id.say(&ctx.http, struct_data).await?;
 
     Ok(())
 }
 
 #[command]
 async fn tipos_de_datos(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, TIPOS_DE_DATOS).await?;
+    let tipos_de_datos = read_to_string("docs/tipos_de_datos.md").unwrap();
+    msg.channel_id.say(&ctx.http, tipos_de_datos).await?;
 
     Ok(())
 }
 
 #[command]
 async fn traits(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, TRAITS).await?;
+    let traits = read_to_string("docs/traits.md").unwrap();
+    msg.channel_id.say(&ctx.http, traits).await?;
 
     Ok(())
 }
 
 #[command]
 async fn tuplas(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, TUPLAS).await?;
+    let tuplas = read_to_string("docs/tuplas.md").unwrap();
+    msg.channel_id.say(&ctx.http, tuplas).await?;
 
     Ok(())
 }
 
 #[command]
 async fn vectores(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, VECTORES).await?;
+    let vectores = read_to_string("docs/vectores.md").unwrap();
+    msg.channel_id.say(&ctx.http, vectores).await?;
 
     Ok(())
 }
 
 #[command]
 async fn r#while(ctx: &Context, msg: &Message) -> CommandResult {
-    msg.channel_id.say(&ctx.http, WHILE).await?;
+    let while_data = read_to_string("docs/while.md").unwrap();
+    msg.channel_id.say(&ctx.http, while_data).await?;
 
     Ok(())
 }
