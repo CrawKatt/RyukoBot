@@ -38,7 +38,7 @@ async fn main() {
     let intents = GatewayIntents::non_privileged() | GatewayIntents::MESSAGE_CONTENT;
 
     let framework = StandardFramework::new()
-        .configure(|c| c.prefix("$")) // Establece el prefijo del bot como "$"
+        .configure(|c| c.prefix("$").case_insensitivity(true)) // Establece el prefijo del bot como "$" y que no sea sensible a mayúsculas
         .group(&GENERAL_GROUP);
 
     let mut client = Client::builder(token, intents)
