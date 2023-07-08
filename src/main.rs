@@ -1,8 +1,5 @@
 mod comandos;
-mod info_consts;
-
 use comandos::*;
-
 use std::env;
 use serenity::model::gateway::GatewayIntents;
 use serenity::async_trait;
@@ -10,7 +7,10 @@ use serenity::framework::standard::{
     macros::group,
     StandardFramework,
 };
+use serenity::model::event::ResumedEvent;
 use serenity::prelude::*;
+use serenity::model::gateway::Ready;
+use songbird::SerenityInit;
 
 #[group]
 #[commands(
@@ -22,14 +22,24 @@ macros, match, metodos, modulos,
 operadores, option, ownership, result,
 return, scopes, shadowing, slices,
 strings, struct, tipos_de_datos, traits,
-tuplas, vectores, while,
+tuplas, vectores, while, let_else,
+stop, play, resume, pause,
+skip, mute, unmute,
 )]
 struct General;
 
 struct Handler;
 
 #[async_trait]
-impl EventHandler for Handler {}
+impl EventHandler for Handler {
+    async fn ready(&self, _: Context, ready: Ready) {
+        println!("{} Está Conectado!", ready.user.name);
+    }
+
+    async fn resume(&self, _: Context, _: ResumedEvent) {
+        println!("Resumed");
+    }
+}
 
 #[tokio::main]
 async fn main() {
@@ -44,6 +54,7 @@ async fn main() {
     let mut client = Client::builder(token, intents)
         .event_handler(Handler)
         .framework(framework)
+        .register_songbird()
         .await
         .expect("Error creating client");
 

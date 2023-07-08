@@ -5,7 +5,39 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[dependencies]
-serenity = "0.11.5"
-tokio = { version = "1.28.2", features = ["full"] }
-dotenv = "0.15.0"
+#[dependencies]
+#serenity = "0.11.5"
+#serenity-voice-model = "0.1.1"
+#songbird = "0.3.2"
+#tokio = { version = "1.28.2", features = ["full"] }
+#dotenv = "0.15.0"
+
+[dependencies.log]
+version = "0.4"
+
+[dependencies.env_logger]
+version = "0.9"
+
+[dependencies.reqwest]
+version = "0.11"
+default-features = false
+features = [ "rustls-tls" ]
+
+[dependencies.serenity]
+version = "0.11"
+features = [ "voice" ]
+
+[dependencies.songbird]
+version = "0.3"
+default-features = false
+features = [ "serenity-rustls", "driver", "gateway", "builtin-queue" ]
+
+[dependencies.tokio]
+version = "1.0"
+features = ["full"]
+
+[dependencies.anyhow]
+version = "1.0"
+
+[dependencies.dotenv]
+version = "0.15"

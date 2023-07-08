@@ -1,6 +1,5 @@
 # If let
-If let se utiliza para desempaquetar y hacer coincidir un valor de tipo Option<T> o Result de forma \
-concisa.
+If let se utiliza para desempaquetar y hacer coincidir un valor de tipo Option<T> o Result de forma concisa.
 
 ### Ejemplo en Rust:
 ```rust
@@ -14,4 +13,3 @@ fn main() {
     }
 }
 ```
-
