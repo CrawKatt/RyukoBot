@@ -188,12 +188,15 @@ async fn pause(ctx: &Context, msg: &Message) -> CommandResult {
     let manager = songbird::get(ctx).await
         .expect("Songbird Voice client placed in at initialisation.").clone();
 
-    let call = get_handler(ctx, msg).await?;
-    let handler = call.lock().await;
-    let queue = handler.queue();
-    let current = queue
-        .current()
-        .ok_or_else(|| anyhow!("Not currently playing"))?;
+    if let Some(handler_lock) = manager.get(guild_id) {
+        let handler = handler_lock.lock().await;
+
+        let _ = handler.queue().pause();
+
+        check_msg(msg.channel_id.say(&ctx.http, "Paused song").await);
+    } else {
+        check_msg(msg.channel_id.say(&ctx.http, "Not in a voice channel to pause").await);
+    }
 
     Ok(())
 }
@@ -268,7 +271,7 @@ async fn play(ctx: &Context, msg: &Message, mut args: Args) -> CommandResult {
         },
     };
 
-    handler.play_source(source);
+    handler.enqueue_source(source);
 
     check_msg(msg.channel_id.say(&ctx.http, "Playing song").await);
 
