@@ -1,4 +1,7 @@
 mod comandos;
+mod music_controller;
+
+use music_controller::*;
 use comandos::*;
 use std::env;
 use serenity::model::gateway::GatewayIntents;
@@ -24,7 +27,8 @@ return, scopes, shadowing, slices,
 strings, struct, tipos_de_datos, traits,
 tuplas, vectores, while, let_else,
 stop, play, resume, pause,
-skip, mute, unmute,
+skip, mute, unmute, queue,
+random, test, test_2, test_3
 )]
 struct General;
 

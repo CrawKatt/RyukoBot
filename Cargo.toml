@@ -41,3 +41,6 @@ version = "1.0"
 
 [dependencies.dotenv]
 version = "0.15"
+
+[dependencies.rand]
+version = "0.8"
