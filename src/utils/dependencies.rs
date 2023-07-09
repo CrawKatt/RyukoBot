@@ -19,3 +19,7 @@ pub use serenity::framework::standard::{
 pub use rand::seq::SliceRandom;
 pub use serenity::framework::standard::{Args};
 pub use songbird::input::Restartable;
+
+pub use std::fs::read_to_string;
+pub use rand::random;
+pub use serenity::prelude::Mentionable;

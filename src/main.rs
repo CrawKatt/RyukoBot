@@ -32,9 +32,13 @@ tuplas, vectores, while, let_else,
 stop, play, resume, pause,
 skip, mute, unmute, queue,
 random, test, test_2, test_3,
-ban, unban,
+ban, unban, test_4,
 )]
 struct General;
+
+#[group]
+#[commands(punch)]
+struct ActionGifs;
 
 struct Handler;
 
@@ -57,7 +61,8 @@ async fn main() {
 
     let framework = StandardFramework::new()
         .configure(|c| c.prefix("$").case_insensitivity(true)) // Establece el prefijo del bot como "$" y que no sea sensible a mayúsculas
-        .group(&GENERAL_GROUP);
+        .group(&GENERAL_GROUP)
+        .group(&ACTIONGIFS_GROUP);
 
     let mut client = Client::builder(token, intents)
         .event_handler(Handler)

@@ -15,9 +15,9 @@ async fn unmute(ctx: &Context, msg: &Message) -> CommandResult {
             check_msg(msg.channel_id.say(&ctx.http, format!("Failed: {:?}", e)).await);
         }
 
-        check_msg(msg.channel_id.say(&ctx.http, "Unmuted").await);
+        check_msg(msg.channel_id.say(&ctx.http, "Mute removido").await);
     } else {
-        check_msg(msg.channel_id.say(&ctx.http, "Not in a voice channel to unmute in").await);
+        check_msg(msg.channel_id.say(&ctx.http, "No estás en un canal de voz para remover Mute").await);
     }
 
     Ok(())

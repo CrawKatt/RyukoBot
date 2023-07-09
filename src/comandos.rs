@@ -1,12 +1,4 @@
-use serenity::framework::standard::{
-    macros::command,
-    CommandResult
-};
-use serenity::{
-    client::{Context},
-};
-use serenity::model::channel::Message;
-use std::fs::read_to_string;
+use crate::utils::dependencies::*;
 
 #[command]
 async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
@@ -19,6 +11,38 @@ async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
 async fn help(ctx: &Context, msg: &Message) -> CommandResult {
     let help = read_to_string("docs/help.md").unwrap();
     msg.channel_id.say(&ctx.http, help).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn test_4(ctx: &Context, msg: &Message) -> CommandResult {
+    msg.channel_id.say(&ctx.http,
+                       "
+                       > * test_1  | test_1
+                       > * test_2 | test_2
+                       > * test_3 | test_3
+                       > * test_4 | test_4
+                       "
+    ).await?;
+
+    Ok(())
+}
+
+#[command]
+async fn punch(ctx: &Context, msg: &Message) -> CommandResult {
+    let random_gif = "https://media.giphy.com/media/NuiEoMDbstN0J2KAiH/giphy.gif";
+    let random_color: u32 = random::<u32>() % 0xFFFFFF;
+
+    if let Err(error) = msg.channel_id.send_message(&ctx.http, |m| {
+        m.embed(|e| {
+            e.colour(random_color)
+                .description(format!("{} a golpeado a {}", msg.author.mention(), msg.mentions.first().unwrap().mention()))
+                .image(random_gif)
+        })
+    }).await {
+        println!("Error al enviar el mensaje: {:#?}", error);
+    }
 
     Ok(())
 }
