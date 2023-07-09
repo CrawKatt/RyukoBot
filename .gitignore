@@ -2,3 +2,8 @@
 target/
 .env
 Cargo.lock
+/.idea/ryuko_bot_discord.iml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/vcs.xml
+/.idea/modules.xml
+/.idea/.gitignore
