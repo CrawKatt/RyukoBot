@@ -1,6 +1,7 @@
 mod comandos;
 mod music_controller;
 mod admin;
+mod utils;
 
 use admin::*;
 use music_controller::*;

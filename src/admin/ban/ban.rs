@@ -1,4 +1,4 @@
-use crate::music_controller::utils::*;
+use crate::utils::*;
 
 #[command]
 pub async fn ban(ctx: &Context, msg: &Message) -> CommandResult {

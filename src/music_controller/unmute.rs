@@ -1,10 +1,4 @@
-use serenity::framework::standard::{
-    macros::command,
-    CommandResult
-};
-use serenity::model::channel::Message;
-use serenity::client::Context;
-use crate::check_msg;
+use crate::utils::*;
 
 #[command]
 #[only_in(guilds)]

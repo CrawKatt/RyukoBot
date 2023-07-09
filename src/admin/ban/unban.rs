@@ -1,4 +1,4 @@
-use crate::music_controller::utils::*;
+use crate::utils::*;
 
 #[command]
 async fn unban(ctx: &Context, msg: &Message) -> CommandResult {
