@@ -1,7 +1,7 @@
 use crate::music_controller::utils::*;
 
 #[command]
-async fn ban(ctx: &Context, msg: &Message) -> CommandResult {
+pub async fn ban(ctx: &Context, msg: &Message) -> CommandResult {
     // Verificar si el autor del mensaje tiene permisos de baneo
     let has_ban_permission = msg
         .member(&ctx.http)
@@ -56,7 +56,3 @@ async fn ban(ctx: &Context, msg: &Message) -> CommandResult {
 
     Ok(())
 }
-
-/*
-
-*/
