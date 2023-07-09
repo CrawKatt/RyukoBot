@@ -33,7 +33,7 @@ pub async fn get_handler(ctx: &Context, msg: &Message) -> Result<Arc<Mutex<Call>
     let manager = songbird::get(ctx)
         .await
         .ok_or_else(|| anyhow!("Couldn't start manager"))?;
-    Ok(manager
+    manager
         .get(guild.id)
-        .ok_or_else(|| anyhow!("Not currently in a channel"))?)
+        .ok_or_else(|| anyhow!("Not currently in a channel"))
 }

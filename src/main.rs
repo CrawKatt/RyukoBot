@@ -1,6 +1,8 @@
 mod comandos;
 mod music_controller;
+mod admin;
 
+use admin::*;
 use music_controller::*;
 use comandos::*;
 use std::env;
@@ -28,7 +30,8 @@ strings, struct, tipos_de_datos, traits,
 tuplas, vectores, while, let_else,
 stop, play, resume, pause,
 skip, mute, unmute, queue,
-random, test, test_2, test_3
+random, test, test_2, test_3,
+ban, unban,
 )]
 struct General;
 
