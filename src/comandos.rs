@@ -76,7 +76,7 @@ async fn punch(ctx: &Context, msg: &Message) -> CommandResult {
 #[command]
 async fn slap(ctx: &Context, msg: &Message) -> CommandResult {
     // let random_gif = "https://media.giphy.com/media/Qumf2QovTD4QxHPjy5/giphy.gif";
-    let resp = reqwest::get("https://api.giphy.com/v1/gifs/search?api_key=76BcX0eFN6wWFLz3P5CpCj7al8AcWWOK&q=slap&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips")
+    let resp = reqwest::get("https://api.giphy.com/v1/gifs/search?api_key=76BcX0eFN6wWFLz3P5CpCj7al8AcWWOK&q=animeslap&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips")
         .await?
         .json::<ResponseGiphy>()
         .await?;
@@ -87,12 +87,14 @@ async fn slap(ctx: &Context, msg: &Message) -> CommandResult {
 
     let random_gif = resp.data.get(index_random);
 
-
     if let Err(error) = msg.channel_id.send_message(&ctx.http, |m| {
         m.embed(|e| {
             e.colour(random_color)
                 .description(format!("{} a golpeado a {}", msg.author.mention(), msg.mentions.first().unwrap().mention()))
                 .image(random_gif.unwrap().images.original.url.as_str())
+                .footer(|f| {
+                    f.text(format!("Gif: {}", index_random))
+                })
         })
     }).await {
         println!("Error al enviar el mensaje: {:#?}", error);
