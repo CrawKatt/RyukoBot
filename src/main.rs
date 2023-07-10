@@ -32,7 +32,7 @@ tuplas, vectores, while, let_else,
 stop, play, resume, pause,
 skip, mute, unmute, queue,
 random, test, test_2, test_3,
-ban, unban, test_4,
+ban, unban, test_4, slap
 )]
 struct General;
 
