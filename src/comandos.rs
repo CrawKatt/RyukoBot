@@ -1,4 +1,30 @@
+
+use serde::{Deserialize, Serialize};
+use rand::Rng;
+
 use crate::utils::dependencies::*;
+
+
+#[derive(Deserialize, Serialize)]
+struct Original {
+    url: String
+}
+
+#[derive(Deserialize, Serialize)]
+struct Data {
+    original: Original
+}
+
+#[derive(Deserialize, Serialize)]
+struct Gif {
+    images: Data,
+    slug: String
+}
+
+#[derive(Deserialize, Serialize)]
+struct ResponseGiphy {
+    data: Vec<Gif>,
+}
 
 #[command]
 async fn ping(ctx: &Context, msg: &Message) -> CommandResult {
@@ -46,6 +72,36 @@ async fn punch(ctx: &Context, msg: &Message) -> CommandResult {
 
     Ok(())
 }
+
+#[command]
+async fn slap(ctx: &Context, msg: &Message) -> CommandResult {
+    // let random_gif = "https://media.giphy.com/media/Qumf2QovTD4QxHPjy5/giphy.gif";
+    let resp = reqwest::get("https://api.giphy.com/v1/gifs/search?api_key=76BcX0eFN6wWFLz3P5CpCj7al8AcWWOK&q=slap&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips")
+        .await?
+        .json::<ResponseGiphy>()
+        .await?;
+
+    let random_color: u32 = random::<u32>() % 0xFFFFFF;
+
+    let index_random = rand::thread_rng().gen_range(0..resp.data.len());
+
+    let random_gif = resp.data.get(index_random);
+
+
+    if let Err(error) = msg.channel_id.send_message(&ctx.http, |m| {
+        m.embed(|e| {
+            e.colour(random_color)
+                .description(format!("{} a golpeado a {}", msg.author.mention(), msg.mentions.first().unwrap().mention()))
+                .image(random_gif.unwrap().images.original.url.as_str())
+        })
+    }).await {
+        println!("Error al enviar el mensaje: {:#?}", error);
+    }
+
+    Ok(())
+}
+
+
 
 #[command]
 async fn test(ctx: &Context, msg: &Message) -> CommandResult {
