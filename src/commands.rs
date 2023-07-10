@@ -1,5 +1,30 @@
+use poise::serenity_prelude::{self as serenity, futures};
+use futures::{Stream, StreamExt};
+use serde::{Deserialize, Serialize};
 
 use crate::{Context, Error};
+use rand::{Rng, random};
+
+#[derive(Deserialize, Serialize, Debug)]
+struct Original {
+    url: String
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+struct Data {
+    original: Original
+}
+
+#[derive(Deserialize, Serialize, Debug)]
+struct Gif {
+    images: Data,
+    slug: String
+}
+
+#[derive(Deserialize, Serialize)]
+struct ResponseGiphy {
+    data: Vec<Gif>,
+}
 
 /// Show this help menu
 #[poise::command(prefix_command, track_edits, slash_command)]
@@ -37,64 +62,117 @@ pub async fn rust(
     Ok(())
 }
 
+async fn autocomplete_status<'a>(
+    _ctx: Context<'_>,
+    partial: &'a str,
+) -> impl Stream<Item = String> + 'a {
+    futures::stream::iter(&["sleep", "playing", "boring", "angry", "happy" ])
+        .filter(move |name| futures::future::ready(name.starts_with(partial)))
+        .map(|name| name.to_string())
+}
+
 
 /// Show help docs for learning rust 
 ///
 /// Enter `/explain match` to vote for pumpkins
 #[poise::command(prefix_command, slash_command)]
-pub async fn vote(
+pub async fn act(
     ctx: Context<'_>,
-    #[description = "What to vote for"] choice: String,
+    #[autocomplete = "autocomplete_status"]
+    #[description = "status to act"] action: String,
 ) -> Result<(), Error> {
-    // Lock the Mutex in a block {} so the Mutex isn't locked across an await point
-    // let num_votes = {
-        // let mut hash_map = ctx.data().votes.lock().unwrap();
-        // let num_votes = hash_map.entry(choice.clone()).or_default();
-        // *num_votes += 1;
-        // *num_votes
-    // };
-    let path = format!("docs/{choice}.md");
-    match std::fs::read_to_string(path) {
-        Ok(data) => ctx.say(data).await?,
-        Err(_) => ctx.say("No such doc for that concept/topic").await?
+
+    let url = format!("https://api.giphy.com/v1/gifs/search?api_key=76BcX0eFN6wWFLz3P5CpCj7al8AcWWOK&q={action}&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips");
+    let resp = reqwest::get(url)
+        .await?
+        .json::<ResponseGiphy>()
+        .await?;
+
+    let random_color: u32 = random::<u32>() % 0xFFFFFF;
+
+    let index_random = rand::thread_rng().gen_range(0..resp.data.len());
+
+    let random_gif = resp.data.get(index_random);
+
+    let msg = match action.as_str() {
+        "greet" => format!("{} saluda a todos", ctx.author()),
+        "playing" => format!("{} esta jugando", ctx.author()),
+        "angry" => format!("{} esta enojado", ctx.author()),
+        "happy" => format!("{} esta feliz", ctx.author()),
+        "boring" => format!("{} esta aburrido", ctx.author()),
+        _ => format!("{} esta {}",  ctx.author(), action),
     };
+
+    ctx.send(|f| f
+        .content(msg)
+        .embed(|f| f
+            .color(random_color)
+            .image(random_gif.unwrap().images.original.url.as_str())
+        )
+    ).await?;
 
 
 
     Ok(())
 }
 
-/// Retrieve number of votes
+async fn autocomplete_actions<'a>(
+    _ctx: Context<'_>,
+    partial: &'a str,
+) -> impl Stream<Item = String> + 'a {
+    futures::stream::iter(&["greet", "kiss", "kick", "slap", "punch", "gun"])
+        .filter(move |name| futures::future::ready(name.starts_with(partial)))
+        .map(|name| name.to_string())
+}
+
+/// Interact with other users with a gif
 ///
-/// Retrieve the number of votes either in general, or for a specific choice:
+/// Example: 
 /// ```
-/// ~getvotes
-/// ~getvotes pumpkin
+/// /interact greet @user
 /// ```
 #[poise::command(prefix_command, track_edits, aliases("votes"), slash_command)]
-pub async fn getvotes(
+pub async fn interact(
     ctx: Context<'_>,
-    #[description = "Choice to retrieve votes for"] choice: Option<String>,
+    #[autocomplete = "autocomplete_actions"]
+    #[description = "action to do with gif"] 
+    action: String,
+
+    #[description = "@username"] user: serenity::User,
 ) -> Result<(), Error> {
-    if let Some(choice) = choice {
-        let num_votes = *ctx.data().votes.lock().unwrap().get(&choice).unwrap_or(&0);
-        let response = match num_votes {
-            0 => format!("Nobody has voted for {} yet", choice),
-            _ => format!("{} people have voted for {}", num_votes, choice),
-        };
-        ctx.say(response).await?;
-    } else {
-        let mut response = String::new();
-        for (choice, num_votes) in ctx.data().votes.lock().unwrap().iter() {
-            response += &format!("{}: {} votes", choice, num_votes);
-        }
 
-        if response.is_empty() {
-            response += "Nobody has voted for anything yet :(";
-        }
+    let url = format!("https://api.giphy.com/v1/gifs/search?api_key=76BcX0eFN6wWFLz3P5CpCj7al8AcWWOK&q={action}&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips");
+    let resp = reqwest::get(url)
+        .await?
+        .json::<ResponseGiphy>()
+        .await?;
 
-        ctx.say(response).await?;
+    let random_color: u32 = random::<u32>() % 0xFFFFFF;
+
+    let index_random = rand::thread_rng().gen_range(0..resp.data.len());
+
+    let random_gif = resp.data.get(index_random);
+
+    let msg = match action.as_str() {
+        "greet" => format!("{} saluda a {}", ctx.author(), user),
+        "kiss" => format!("{} beso a {}", ctx.author(), user),
+        "slap" => format!("{} cachetea a {}", ctx.author(), user),
+        "kick" => format!("{} pateo a {}", ctx.author(), user),
+        "punch" => format!("{} le dio un puñetazo a {}", ctx.author(), user),
+        "gun" => format!("{} le disparo a {}", ctx.author(), user),
+        _ => format!("{} {} {}", ctx.author(), action, user),
     };
 
+    ctx.send(|f| f
+        .content(msg)
+        .embed(|f| f
+            .color(random_color)
+            .image(random_gif.unwrap().images.original.url.as_str())
+        )
+    ).await?;
+
     Ok(())
+
 }
+
+
