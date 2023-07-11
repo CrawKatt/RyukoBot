@@ -1,3 +1,4 @@
+
 use crate::utils::dependencies::*;
 
 /// Interact with other users with a gif
@@ -13,9 +14,8 @@ pub async fn interact(
     #[description = "action to do with gif"]
     action: String,
 
-    #[description = "@username"] user: serenity_2::User,
+    #[description = "@username"] user: User,
 ) -> Result<(), Error> {
-
     let url = format!("https://api.giphy.com/v1/gifs/search?api_key=76BcX0eFN6wWFLz3P5CpCj7al8AcWWOK&q={action}&limit=25&offset=0&rating=g&lang=en&bundle=messaging_non_clips");
     let resp = reqwest::get(url)
         .await?
@@ -24,7 +24,8 @@ pub async fn interact(
 
     let random_color: u32 = random::<u32>() % 0xFFFFFF;
 
-    let index_random = rand::thread_rng().gen_range(0..resp.data.len());
+    let mut rng : StdRng = SeedableRng::from_entropy();
+    let index_random = rng.gen_range(0..resp.data.len());
 
     let random_gif = resp.data.get(index_random);
 
