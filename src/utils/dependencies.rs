@@ -1,11 +1,14 @@
 pub use poise::serenity_prelude::{self as serenity_2, futures};
 pub use futures::{Stream, StreamExt};
 pub use serde::{Deserialize, Serialize};
-pub use crate::fun::*;
 pub use serenity::async_trait;
-
+pub use serenity::model::prelude::User;
+pub use rand::prelude::StdRng;
+pub use rand::SeedableRng;
+pub use crate::fun::*;
 pub use crate::{Context, Error};
 pub use rand::{Rng, random};
+pub use songbird::SerenityInit;
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct Original {
