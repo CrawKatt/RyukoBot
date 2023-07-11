@@ -1,4 +1,3 @@
-
 use crate::utils::dependencies::*;
 
 /// Interact with other users with a gif
