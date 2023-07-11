@@ -4,36 +4,10 @@ pub mod utils;
 pub mod fun;
 pub mod audio;
 
-// Types used by all command functions
-pub type Context<'a> = poise::Context<'a, Data, Error>;
-
-// Custom user data passed to all command functions
-pub struct Data {
-    votes: Mutex<HashMap<String, u32>>,
-    client: reqwest::Client,
-}
-
-async fn on_error(error: poise::FrameworkError<'_, Data, Error>) {
-    // This is our custom error handler
-    // They are many errors that can occur, so we only handle the ones we want to customize
-    // and forward the rest to the default handler
-    match error {
-        poise::FrameworkError::Setup { error, .. } => panic!("Failed to start bot: {:?}", error),
-        poise::FrameworkError::Command { error, ctx } => {
-            println!("Error in command `{}`: {:?}", ctx.command().name, error,);
-        }
-        error => {
-            if let Err(e) = poise::builtins::on_error(error).await {
-                println!("Error while handling error: {}", e)
-            }
-        }
-    }
-}
-
 #[tokio::main]
 async fn main() {
     env_logger::init();
-     dotenv::dotenv().ok();
+    dotenv::dotenv().ok();
 
     // FrameworkOptions contains all of poise's configuration option in one struct
     // Every option can be omitted to use its default value

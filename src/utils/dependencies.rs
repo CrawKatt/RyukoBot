@@ -22,10 +22,11 @@ pub use serde::{
     Serialize
 };
 
+pub use crate::utils::on_error;
 pub use rand::prelude::StdRng;
 pub use rand::SeedableRng;
 pub use crate::fun::*;
-pub use crate::Context;
+//pub use crate::Context;
 
 pub use rand::{
     Rng,
@@ -34,8 +35,18 @@ pub use rand::{
 
 pub use crate::commands::*;
 pub use crate::audio::*;
+//use crate::Data;
+
+// Types used by all command functions
 pub type CommandResult = Result<(), Error>;
 pub type Error = Box<dyn std::error::Error + Send + Sync>;
+pub type Context<'a> = poise::Context<'a, Data, Error>;
+
+// Custom user data passed to all command functions
+pub struct Data {
+    pub votes: Mutex<HashMap<String, u32>>,
+    pub client: reqwest::Client,
+}
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct Original {
