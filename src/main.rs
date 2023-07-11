@@ -1,15 +1,11 @@
-use poise::serenity_prelude as serenity;
-use std::{collections::HashMap, env::var, sync::Mutex, time::Duration};
-
-mod commands;
-mod utils;
-mod fun;
-mod audio;
+use utils::dependencies::*;
+pub mod commands;
+pub mod utils;
+pub mod fun;
+pub mod audio;
 
 // Types used by all command functions
-pub type Error = Box<dyn std::error::Error + Send + Sync>;
 pub type Context<'a> = poise::Context<'a, Data, Error>;
-pub type CommandResult = Result<(), Error>;
 
 // Custom user data passed to all command functions
 pub struct Data {
@@ -43,11 +39,13 @@ async fn main() {
     // Every option can be omitted to use its default value
     let options = poise::FrameworkOptions {
         commands: vec![
-            commands::help(),
-            commands::act(),
-            commands::interact(),
-            commands::rust(),
-            audio::join(),
+            help(),
+            act(),
+            interact(),
+            rust(),
+            join(),
+            leave(),
+            play(),
         ],
         prefix_options: poise::PrefixFrameworkOptions {
             prefix: Some("$".into()),
@@ -94,6 +92,7 @@ async fn main() {
     };
 
     poise::Framework::builder()
+        .client_settings(|b| b.register_songbird())
         .token(
             var("DISCORD_TOKEN")
                 .expect("Missing `DISCORD_TOKEN` env var, see README for more information."),
@@ -110,10 +109,9 @@ async fn main() {
         })
         .options(options)
         .intents(
-            serenity::GatewayIntents::non_privileged() | serenity::GatewayIntents::MESSAGE_CONTENT,
+            poise_serenity::GatewayIntents::non_privileged() | poise_serenity::GatewayIntents::MESSAGE_CONTENT,
         )
         .run()
         .await
         .unwrap();
 }
-// pendiente
