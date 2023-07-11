@@ -1,15 +1,20 @@
-
 use poise::serenity_prelude as serenity;
 use std::{collections::HashMap, env::var, sync::Mutex, time::Duration};
+
 mod commands;
+mod utils;
+mod fun;
+mod audio;
 
 // Types used by all command functions
-type Error = Box<dyn std::error::Error + Send + Sync>;
-type Context<'a> = poise::Context<'a, Data, Error>;
+pub type Error = Box<dyn std::error::Error + Send + Sync>;
+pub type Context<'a> = poise::Context<'a, Data, Error>;
+pub type CommandResult = Result<(), Error>;
 
 // Custom user data passed to all command functions
 pub struct Data {
     votes: Mutex<HashMap<String, u32>>,
+    client: reqwest::Client,
 }
 
 async fn on_error(error: poise::FrameworkError<'_, Data, Error>) {
@@ -37,9 +42,15 @@ async fn main() {
     // FrameworkOptions contains all of poise's configuration option in one struct
     // Every option can be omitted to use its default value
     let options = poise::FrameworkOptions {
-        commands: vec![commands::help(), commands::act(), commands::interact(), commands::rust()],
+        commands: vec![
+            commands::help(),
+            commands::act(),
+            commands::interact(),
+            commands::rust(),
+            audio::join(),
+        ],
         prefix_options: poise::PrefixFrameworkOptions {
-            prefix: Some("~".into()),
+            prefix: Some("$".into()),
             edit_tracker: Some(poise::EditTracker::for_timespan(Duration::from_secs(3600))),
             additional_prefixes: vec![
                 poise::Prefix::Literal("hey bot"),
@@ -93,6 +104,7 @@ async fn main() {
                 poise::builtins::register_globally(ctx, &framework.options().commands).await?;
                 Ok(Data {
                     votes: Mutex::new(HashMap::new()),
+                    client: Default::default(),
                 })
             })
         })

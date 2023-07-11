@@ -1,5 +1,5 @@
-pub mod music_utils;
 pub mod dependencies;
+pub mod metadata;
 
-pub use music_utils::*;
 pub use dependencies::*;
+pub use metadata::*;

@@ -4,46 +4,21 @@ version = "0.1.0"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-#[dependencies]
-#serenity = "0.11.5"
-#serenity-voice-model = "0.1.1"
-#songbird = "0.3.2"
-#tokio = { version = "1.28.2", features = ["full"] }
-#dotenv = "0.15.0"
-
-[dependencies.log]
-version = "0.4"
-
-[dependencies.env_logger]
-version = "0.9"
-
 [dependencies]
-poise = { version = "0.5.5", default-features = false }
-
-[dependencies.reqwest]
-version = "0.11"
-default-features = false
-features = [ "rustls-tls" ]
-
-[dependencies.serde]
-version = "1.0"
-features = [ "derive" ]
-
-[dependencies.songbird]
-version = "0.3"
-default-features = false
-features = [ "serenity-rustls", "driver", "gateway", "builtin-queue" ]
-
-[dependencies.tokio]
-version = "1.0"
-features = ["full"]
-
-[dependencies.anyhow]
-version = "1.0"
-
-[dependencies.dotenv]
-version = "0.15"
-
-[dependencies.rand]
-version = "0.8"
+shuttle-runtime = "0.16.0"
+anyhow = "1.0.71"
+poise = "0.5.5"
+shuttle-poise = "0.16.0"
+shuttle-secrets = "0.16.0"
+tokio = "1.28.1"
+tracing = "0.1.37"
+songbird = { version = "0.3.2", features = ["yt-dlp", "builtin-queue", "driver"] }
+shuttle-static-folder = "0.16.0"
+chrono = "0.4.19"
+serenity = { version = "0.11.5", default-features = false }
+serde = "1.0.164"
+serde_json = "1.0.99"
+rand = "0.8.5"
+reqwest = "0.11.18"
+env_logger = "0.10.0"
+dotenv = "0.15.0"
