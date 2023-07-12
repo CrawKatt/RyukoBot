@@ -13,13 +13,10 @@ async fn main() {
     // Every option can be omitted to use its default value
     let options = poise::FrameworkOptions {
         commands: vec![
-            help(),
-            act(),
-            interact(),
-            rust(),
-            join(),
-            leave(),
-            play(),
+            help(), act(), interact(),
+            rust(), leave(), play(),
+            pause(), resume(), stop(),
+            skip(),
         ],
         prefix_options: poise::PrefixFrameworkOptions {
             prefix: Some("$".into()),
