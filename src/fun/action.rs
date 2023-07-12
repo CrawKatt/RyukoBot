@@ -39,9 +39,9 @@ pub async fn interact(
     };
 
     ctx.send(|f| f
-        .content(msg)
         .embed(|f| f
             .color(random_color)
+            .description(msg)
             .image(random_gif.unwrap().images.original.url.as_str())
         )
     ).await?;
