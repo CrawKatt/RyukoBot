@@ -36,10 +36,7 @@ pub async fn ban(
             .embed(|f| f
                 .color(0xff0000)
                 .description(format!("##### **{} ha sido baneado por {}!** \n##### **Motivo:** *{}*", user, ctx.author(), razon))
-            )
-        ).await?;
-
-        //ctx.say(format!("**{} ha sido baneado por {}!** \n**Motivo:** *{}*", user, ctx.author(), razon)).await?;
+            )).await?;
     }
 
     Ok(())
