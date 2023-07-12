@@ -20,29 +20,6 @@ pub async fn help(
     Ok(())
 }
 
-async fn autocomplete_concepts<'a>(
-    _ctx: Context<'_>,
-    partial: &'a str,
-) -> impl Stream<Item = String> + 'a {
-    let Ok(docs) = std::fs::read_dir("docs") else {
-        panic!("Docs not found required!!!");
-    };
-
-    let mut files = vec![];
-    for entry in docs.into_iter() {
-        let entry = entry.unwrap();
-        let filename = entry.file_name().into_string().unwrap();
-        let name = filename.split('.').next().unwrap();
-        files.push(name.to_string());
-    }
-
-
-    futures::stream::iter(files)
-        .filter(move |data: &String| futures::future::ready(data.starts_with(partial)))
-}
-
-
-
 /// Show help docs for learning rust 
 #[poise::command(prefix_command, slash_command)]
 pub async fn rust(
