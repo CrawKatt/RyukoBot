@@ -1,8 +1,11 @@
 use utils::dependencies::*;
+
+
 pub mod commands;
 pub mod utils;
 pub mod fun;
 pub mod audio;
+pub mod admin;
 
 #[tokio::main]
 async fn main() {
@@ -16,7 +19,7 @@ async fn main() {
             help(), act(), interact(),
             rust(), leave(), play(),
             pause(), resume(), stop(),
-            skip(),
+            skip(), ban(),
         ],
         prefix_options: poise::PrefixFrameworkOptions {
             prefix: Some("$".into()),

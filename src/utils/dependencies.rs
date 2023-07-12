@@ -35,7 +35,7 @@ pub use rand::{
 
 pub use crate::commands::*;
 pub use crate::audio::*;
-//use crate::Data;
+pub use crate::admin::ban;
 
 // Types used by all command functions
 pub type CommandResult = Result<(), Error>;
