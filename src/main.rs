@@ -18,7 +18,7 @@ async fn main() {
             help(), act(), interact(),
             rust(), leave(), play(),
             pause(), resume(), stop(),
-            skip(), ban(),
+            skip(), ban(), unban(),
         ],
         prefix_options: poise::PrefixFrameworkOptions {
             prefix: Some("$".into()),

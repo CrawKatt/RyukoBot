@@ -43,7 +43,7 @@ pub use rand::{
 // Re-export all commands
 pub use crate::commands::*;
 pub use crate::audio::*;
-pub use crate::admin::ban;
+pub use crate::admin::*;
 pub use crate::fun::*;
 
 // Re-export all utils
