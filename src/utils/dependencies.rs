@@ -1,10 +1,19 @@
+// Anyhow Dependencies
+pub use anyhow::anyhow;
+
+// Songbird Dependencies
+pub use songbird::SerenityInit;
+
+// Poise Dependencies
 pub use poise::serenity_prelude::futures;
 pub use poise::serenity_prelude as poise_serenity;
-pub use serenity::prelude::Mentionable;
-pub use anyhow::anyhow;
-pub use songbird::SerenityInit;
+
+// Serenity Dependencies
 pub use serenity::async_trait;
+pub use serenity::prelude::Mentionable;
 pub use serenity::model::prelude::User;
+
+// Std Dependencies
 pub use futures::{
     Stream,
     StreamExt
@@ -17,25 +26,28 @@ pub use std::{
     time::Duration
 };
 
+// Serde Dependencies
 pub use serde::{
     Deserialize,
     Serialize
 };
 
-pub use crate::utils::on_error;
+// Rand Dependencies
 pub use rand::prelude::StdRng;
 pub use rand::SeedableRng;
-pub use crate::fun::*;
-//pub use crate::Context;
-
 pub use rand::{
     Rng,
     random
 };
 
+// Re-export all commands
 pub use crate::commands::*;
 pub use crate::audio::*;
 pub use crate::admin::ban;
+pub use crate::fun::*;
+
+// Re-export all utils
+pub use crate::utils::on_error;
 
 // Types used by all command functions
 pub type CommandResult = Result<(), Error>;
@@ -69,6 +81,7 @@ pub struct ResponseGiphy {
     pub data: Vec<Gif>,
 }
 
+/// Autocomplete functions for slash commands
 pub async fn autocomplete_actions<'a>(
     _ctx: Context<'_>,
     partial: &'a str,
@@ -102,7 +115,6 @@ pub async fn autocomplete_concepts<'a>(
         let name = filename.split('.').next().unwrap();
         files.push(name.to_string());
     }
-
 
     futures::stream::iter(files)
         .filter(move |data: &String| futures::future::ready(data.starts_with(partial)))
