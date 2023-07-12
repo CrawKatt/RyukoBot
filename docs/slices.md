@@ -1,5 +1,5 @@
 # Slices
-Los slices son una característica de Rust que nos permite tomar prestada una porción de un \
+Los slices son una característica de Rust que nos permite tomar prestada una porción de un 
 contenedor.
 ### Ejemplo en Rust:
 ```rust

@@ -1,5 +1,5 @@
 # Lifetimes
-Los Lifetimes son una característica de Rust que nos permiten especificar la duración de una \
+Los Lifetimes son una característica de Rust que nos permiten especificar la duración de una 
 referencia.
 
 ### Ejemplo en Rust:

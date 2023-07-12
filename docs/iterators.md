@@ -1,5 +1,5 @@
 # Iterators
-Los Iterators son una característica de Rust que nos permiten recorrer una colección de datos de \
+Los Iterators son una característica de Rust que nos permiten recorrer una colección de datos de 
 forma secuencial.
 
 ### Ejemplo en Rust:

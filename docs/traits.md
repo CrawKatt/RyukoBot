@@ -1,5 +1,5 @@
 # Traits
-Los traits son una característica de Rust que nos permite definir comportamientos que pueden \
+Los traits son una característica de Rust que nos permite definir comportamientos que pueden 
 implementar diferentes tipos de datos.
 
 ### Ejemplo en Rust:

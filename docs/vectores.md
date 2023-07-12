@@ -1,6 +1,6 @@
 # Vectores
-Los Vectores son similares a los Arrays, pero con la diferencia de que pueden almacenar distintos \
-tipos de datos. En Rust, los Vectores se definen con la macro `vec!` y separando cada dato con una \
+Los Vectores son similares a los Arrays, pero con la diferencia de que pueden almacenar distintos 
+tipos de datos. En Rust, los Vectores se definen con la macro `vec!` y separando cada dato con una 
 coma.
 
 ### Ejemplo en Rust:
@@ -17,7 +17,7 @@ fn main() {
 ```
 
 ## Consejo
-Consejo: En Rust, los Vectores se rigen por la regla de los índices. A cada elemento le \
+Consejo: En Rust, los Vectores se rigen por la regla de los índices. A cada elemento le 
 corresponde un índice y los índices comienzan en cero.
 Si tomamos nuestro ejemplo el índice en dicho ejemplo es:
 ```

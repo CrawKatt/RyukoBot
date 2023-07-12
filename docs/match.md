@@ -1,5 +1,5 @@
 # Match
-Match es una expresión que nos permite comparar un valor con una serie de patrones y ejecutar un \
+Match es una expresión que nos permite comparar un valor con una serie de patrones y ejecutar un 
 bloque de código dependiendo de si el patrón coincide o no.
 ### Ejemplo en Rust:
 ```rust
