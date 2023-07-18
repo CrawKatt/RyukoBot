@@ -33,12 +33,7 @@ pub use serde::{
 };
 
 // Rand Dependencies
-pub use rand::prelude::StdRng;
-pub use rand::SeedableRng;
-pub use rand::{
-    Rng,
-    random
-};
+pub use rand::random;
 
 // Re-export all commands
 pub use crate::commands::*;
@@ -60,33 +55,12 @@ pub struct Data {
     pub client: reqwest::Client,
 }
 
-#[derive(Deserialize, Serialize, Debug)]
-pub struct Original {
-    pub url: String
-}
-
-#[derive(Deserialize, Serialize, Debug)]
-pub struct GifData {
-    pub original: Original
-}
-
-#[derive(Deserialize, Serialize, Debug)]
-pub struct Gif {
-    pub images: GifData,
-    pub slug: String
-}
-
-#[derive(Deserialize, Serialize)]
-pub struct ResponseGiphy {
-    pub data: Vec<Gif>,
-}
-
 /// Autocomplete functions for slash commands
 pub async fn autocomplete_actions<'a>(
     _ctx: Context<'_>,
     partial: &'a str,
 ) -> impl Stream<Item = String> + 'a {
-    futures::stream::iter(&["greet", "kiss", "kick", "slap", "punch", "gun"])
+    futures::stream::iter(&["hug", "kiss", "kick", "slap", "punch", "shoot"])
         .filter(move |name| futures::future::ready(name.starts_with(partial)))
         .map(|name| name.to_string())
 }
@@ -95,7 +69,7 @@ pub async fn autocomplete_status<'a>(
     _ctx: Context<'_>,
     partial: &'a str,
 ) -> impl Stream<Item = String> + 'a {
-    futures::stream::iter(&["sleep", "playing", "boring", "angry", "happy" ])
+    futures::stream::iter(&["cry", "dance", "bored", "blush", "happy" ])
         .filter(move |name| futures::future::ready(name.starts_with(partial)))
         .map(|name| name.to_string())
 }
