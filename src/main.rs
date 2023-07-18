@@ -19,14 +19,12 @@ async fn main() {
             rust(), leave(), play(),
             pause(), resume(), stop(),
             skip(), ban(), unban(),
+            ping(), test(), create(),
+            set_voice(), newvoice(),
         ],
         prefix_options: poise::PrefixFrameworkOptions {
             prefix: Some("$".into()),
             edit_tracker: Some(poise::EditTracker::for_timespan(Duration::from_secs(3600))),
-            additional_prefixes: vec![
-                poise::Prefix::Literal("hey bot"),
-                poise::Prefix::Literal("hey bot,"),
-            ],
             ..Default::default()
         },
         /// The global error handler for all error cases that may occur
