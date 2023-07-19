@@ -1,78 +1,87 @@
-mod comandos;
-mod music_controller;
-mod admin;
-mod utils;
+use utils::dependencies::*;
 
-use admin::*;
-use music_controller::*;
-use comandos::*;
-use std::env;
-use serenity::model::gateway::GatewayIntents;
-use serenity::async_trait;
-use serenity::framework::standard::{
-    macros::group,
-    StandardFramework,
-};
-use serenity::model::event::ResumedEvent;
-use serenity::prelude::*;
-use serenity::model::gateway::Ready;
-use songbird::SerenityInit;
-
-#[group]
-#[commands(
-ping, help, variables, array,
-borrowing, closures, condicionales, constantes,
-enums, for, funciones, generics,
-if_let, iterators, lifetimes, loop,
-macros, match, metodos, modulos,
-operadores, option, ownership, result,
-return, scopes, shadowing, slices,
-strings, struct, tipos_de_datos, traits,
-tuplas, vectores, while, let_else,
-stop, play, resume, pause,
-skip, mute, unmute, queue,
-random, test, test_2, test_3,
-ban, unban, test_4, slap
-)]
-struct General;
-
-#[group]
-#[commands(punch)]
-struct ActionGifs;
-
-struct Handler;
-
-#[async_trait]
-impl EventHandler for Handler {
-    async fn ready(&self, _: Context, ready: Ready) {
-        println!("{} Está Conectado!", ready.user.name);
-    }
-
-    async fn resume(&self, _: Context, _: ResumedEvent) {
-        println!("Resumed");
-    }
-}
+pub mod commands;
+pub mod utils;
+pub mod fun;
+pub mod audio;
+pub mod admin;
 
 #[tokio::main]
 async fn main() {
+    env_logger::init();
     dotenv::dotenv().ok();
-    let token = env::var("DISCORD_TOKEN").expect("token ERR"); // Reemplaza esto con el token de tu bot
-    let intents = GatewayIntents::non_privileged() | GatewayIntents::MESSAGE_CONTENT;
 
-    let framework = StandardFramework::new()
-        .configure(|c| c.prefix("$").case_insensitivity(true)) // Establece el prefijo del bot como "$" y que no sea sensible a mayúsculas
-        .group(&GENERAL_GROUP)
-        .group(&ACTIONGIFS_GROUP);
+    // FrameworkOptions contains all of poise's configuration option in one struct
+    // Every option can be omitted to use its default value
+    let options = poise::FrameworkOptions {
+        commands: vec![
+            help(), act(), interact(),
+            rust(), leave(), play(),
+            pause(), resume(), stop(),
+            skip(), ban(), unban(),
+            ping(), test(), create(),
+            set_voice(), newvoice(),
+        ],
+        prefix_options: poise::PrefixFrameworkOptions {
+            prefix: Some("$".into()),
+            edit_tracker: Some(poise::EditTracker::for_timespan(Duration::from_secs(3600))),
+            ..Default::default()
+        },
+        /// The global error handler for all error cases that may occur
+        on_error: |error| Box::pin(on_error(error)),
+        /// This code is run before every command
+        pre_command: |ctx| {
+            Box::pin(async move {
+                println!("Executing command {}...", ctx.command().qualified_name);
+            })
+        },
+        /// This code is run after a command if it was successful (returned Ok)
+        post_command: |ctx| {
+            Box::pin(async move {
+                println!("Executed command {}!", ctx.command().qualified_name);
+            })
+        },
+        /// Every command invocation must pass this check to continue execution
+        command_check: Some(|ctx| {
+            Box::pin(async move {
+                if ctx.author().id == 123456789 {
+                    return Ok(false);
+                }
+                Ok(true)
+            })
+        }),
+        /// Enforce command checks even for owners (enforced by default)
+        /// Set to true to bypass checks, which is useful for testing
+        skip_checks_for_owners: false,
+        event_handler: |_ctx, event, _framework, _data| {
+            Box::pin(async move {
+                println!("Got an event in event handler: {:?}", event.name());
+                Ok(())
+            })
+        },
+        ..Default::default()
+    };
 
-    let mut client = Client::builder(token, intents)
-        .event_handler(Handler)
-        .framework(framework)
-        .register_songbird()
+    poise::Framework::builder()
+        .client_settings(|b| b.register_songbird())
+        .token(
+            var("DISCORD_TOKEN")
+                .expect("Missing `DISCORD_TOKEN` env var, see README for more information."),
+        )
+        .setup(move |ctx, _ready, framework| {
+            Box::pin(async move {
+                println!("Logged in as {}", _ready.user.name);
+                poise::builtins::register_globally(ctx, &framework.options().commands).await?;
+                Ok(Data {
+                    client: Default::default(),
+                })
+            })
+        })
+        .options(options)
+        .intents(
+            poise_serenity::GatewayIntents::non_privileged() | poise_serenity::GatewayIntents::MESSAGE_CONTENT,
+        )
+        .run()
         .await
-        .expect("Error creating client");
-
-    if let Err(why) = client.start().await {
-        println!("An error occurred while running the client: {:?}", why);
-    }
-
+        .unwrap();
 }

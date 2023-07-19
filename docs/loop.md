@@ -1,5 +1,5 @@
 # Ciclo Loop
-El ciclo `loop` es un ciclo infinito que se puede utilizar para ejecutar un bloque de código \
+El ciclo `loop` es un ciclo infinito que se puede utilizar para ejecutar un bloque de código 
 infinitamente.
 ### Ejemplo en Rust:
 ```rust

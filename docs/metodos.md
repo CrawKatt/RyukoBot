@@ -1,5 +1,5 @@
 # Métodos
-Los métodos son funciones que se definen dentro del contexto de un struct, enum o \
+Los métodos son funciones que se definen dentro del contexto de un struct, enum o 
 implementación de un trait.
 
 ### Ejemplo en Rust:

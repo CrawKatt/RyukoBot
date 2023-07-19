@@ -1,5 +1,5 @@
 # Result
-Result es un tipo de dato genérico que nos permite representar la posibilidad de que una operación \
+Result es un tipo de dato genérico que nos permite representar la posibilidad de que una operación 
 falle.
 ### Ejemplo en Rust:
 ```rust

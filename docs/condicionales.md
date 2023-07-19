@@ -1,5 +1,5 @@
 # Condicionales
-Son grupos de sentencias o sentencias individuales que te permiten condicionar la decisión entre \
+Son grupos de sentencias o sentencias individuales que te permiten condicionar la decisión entre 
 la elección de una opción y otra.
 ### Ejemplo en Rust:
 ```rust

@@ -1,5 +1,5 @@
 # Ciclo For
-En Rust, el ciclo `for` nos permitirá iterar sobre una colección de datos. Ya sea un `Vector`, un \
+En Rust, el ciclo `for` nos permitirá iterar sobre una colección de datos. Ya sea un `Vector`, un 
 `Array`, una `Tupla`, etc.
 El ciclo `for` funcionará como un `for each` en otros lenguajes de programación.
 ### Ejemplo en Rust:

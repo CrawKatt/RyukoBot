@@ -1,5 +1,5 @@
 # Módulos
-Los módulos son una característica de Rust que nos permiten organizar nuestro código en archivos \
+Los módulos son una característica de Rust que nos permiten organizar nuestro código en archivos 
 separados.
 ### Ejemplo en Rust:
 ```rust

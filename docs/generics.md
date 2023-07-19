@@ -1,5 +1,5 @@
 # Generics
-Los Generics son una característica de Rust que nos permiten crear tipos de datos genéricos, que \
+Los Generics son una característica de Rust que nos permiten crear tipos de datos genéricos, que 
 pueden ser de cualquier tipo.
 
 ### Ejemplo en Rust:

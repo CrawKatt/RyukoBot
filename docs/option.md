@@ -1,5 +1,5 @@
 # Option
-Option es un tipo de dato genérico que nos permite representar la posibilidad de que un valor \
+Option es un tipo de dato genérico que nos permite representar la posibilidad de que un valor 
 esté presente o no.
 ### Ejemplo en Rust:
 ```rust
