@@ -51,7 +51,6 @@ pub type Context<'a> = poise::Context<'a, Data, Error>;
 
 // Custom user data passed to all command functions
 pub struct Data {
-    pub votes: Mutex<HashMap<String, u32>>,
     pub client: reqwest::Client,
 }
 

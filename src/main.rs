@@ -1,3 +1,4 @@
+use serenity::model::prelude::Event;
 use utils::dependencies::*;
 
 pub mod commands;
@@ -73,7 +74,6 @@ async fn main() {
                 println!("Logged in as {}", _ready.user.name);
                 poise::builtins::register_globally(ctx, &framework.options().commands).await?;
                 Ok(Data {
-                    votes: Mutex::new(HashMap::new()),
                     client: Default::default(),
                 })
             })
