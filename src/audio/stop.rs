@@ -12,7 +12,7 @@ pub async fn stop(ctx: Context<'_>) -> CommandResult {
     if let Some(handler_lock) = manager.get(guild_id) {
         let handler = handler_lock.lock().await;
         let queue = handler.queue();
-        let _ = queue.stop();
+        queue.stop();
 
         ctx.say("Canción detenida").await?;
     } else {
