@@ -11,7 +11,7 @@ pub async fn unban(
     let current_member = guild_id.member(&ctx.serenity_context(), current_user.id).await?;
 
     let has_permission = current_member
-        .permissions(&ctx.serenity_context())?
+        .permissions(ctx.serenity_context())?
         .ban_members();
 
     if !has_permission {

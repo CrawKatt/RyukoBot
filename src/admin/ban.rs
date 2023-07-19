@@ -15,7 +15,7 @@ pub async fn ban(
     let member = guild_id.member(&ctx.serenity_context(), user.id).await?;
 
     let has_permission = member
-        .permissions(&ctx
+        .permissions(ctx
         .serenity_context())?
         .ban_members();
 
