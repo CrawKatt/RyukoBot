@@ -19,7 +19,9 @@ pub async fn interact(
 
 ) -> CommandResult {
 
-    let random_gif = nekosbest::get(nekosbest::Category::from_str(&action).unwrap()).await?.url;
+    let random_gif = nekosbest::get(nekosbest::Category::from_str(&action).unwrap()).await?;
+    let anime_name = random_gif.details.try_into_gif().unwrap().anime_name;
+
     let random_color: u32 = random::<u32>() % 0xFFFFFF;
     let msg = match action.as_str() {
         "kiss" => format!("{} beso a {}", ctx.author(), user),
@@ -39,7 +41,8 @@ pub async fn interact(
         .embed(|f| f
             .color(random_color)
             .description(msg)
-            .image(random_gif)
+            .footer(|f| f.text(format!("Anime: {}", anime_name)))
+            .image(random_gif.url)
         )
     ).await?;
 
