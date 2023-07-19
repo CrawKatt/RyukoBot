@@ -1,4 +1,3 @@
-use serenity::model::prelude::Event;
 use utils::dependencies::*;
 
 pub mod commands;
