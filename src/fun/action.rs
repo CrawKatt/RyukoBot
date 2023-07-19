@@ -72,9 +72,9 @@ pub async fn act(
     };
 
     ctx.send(|f| f
-        .content(msg)
         .embed(|f| f
             .color(random_color)
+            .description(msg)
             .image(random_gif)
         )
     ).await?;
