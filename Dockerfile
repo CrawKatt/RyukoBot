@@ -13,4 +13,4 @@ COPY . .
 
 RUN cargo build --release
 
-ENTRYPOINT ["/app/bin/ryuko_bot_discord"]
+ENTRYPOINT ["/app/target/release/ryuko_bot_discord"]
