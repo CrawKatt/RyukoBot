@@ -60,7 +60,8 @@ pub async fn act(
 ) -> Result<(), Error> {
 
     let random_color: u32 = random::<u32>() % 0xFFFFFF;
-    let random_gif = nekosbest::get(nekosbest::Category::from_str(&action).unwrap()).await?.url;
+    let random_gif = nekosbest::get(nekosbest::Category::from_str(&action).unwrap()).await?;
+    let anime_name = random_gif.details.try_into_gif().unwrap().anime_name;
 
     let msg = match action.as_str() {
         "blush" => format!("{} Se sonroja", ctx.author()),
@@ -78,7 +79,8 @@ pub async fn act(
         .embed(|f| f
             .color(random_color)
             .description(msg)
-            .image(random_gif)
+            .footer(|f| f.text(format!("Anime: {}", anime_name)))
+            .image(random_gif.url)
         )
     ).await?;
 
