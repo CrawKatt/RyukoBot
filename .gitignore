@@ -1,5 +1,4 @@
 
-target/
 .env
 Cargo.lock
 /.idea/ryuko_bot_discord.iml

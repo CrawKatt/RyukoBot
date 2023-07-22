@@ -23,7 +23,8 @@ pub use std::{
     collections::HashMap,
     env::var,
     sync::Mutex,
-    time::Duration
+    time::Duration,
+    str::FromStr
 };
 
 // Serde Dependencies
