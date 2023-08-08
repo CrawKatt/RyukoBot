@@ -16,3 +16,4 @@ fn main() {
 }
 ```
 
+Más información en [**Rust Book: Loop**](https://phosphorus-m.github.io/rust-book-es/ch03-05-control-flow.html#repetici%C3%B3n-con-bucles)

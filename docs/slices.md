@@ -13,3 +13,5 @@ fn main() {
     println!("El valor de mundo es: {}", mundo);
 }
 ```
+
+Más información en [**Rust Book: Slices**](https://phosphorus-m.github.io/rust-book-es/ch04-03-slices.html)

@@ -1,5 +1,7 @@
 use poise::serenity_prelude;
 pub use crate::utils::dependencies::*;
+use chrono::{DateTime, Utc};
+use serenity::model::channel::Message;
 
 /// Show this help menu
 #[poise::command(prefix_command, track_edits, slash_command)]
@@ -40,7 +42,7 @@ pub async fn rust(
 }
 
 #[poise::command(prefix_command, slash_command)]
-pub async fn ping(ctx: Context<'_>) -> Result<(), Error> {
+pub async fn paginate(ctx: Context<'_>) -> Result<(), Error> {
     let pages = &[
         "Página 1",
         "Página 2",
@@ -49,6 +51,32 @@ pub async fn ping(ctx: Context<'_>) -> Result<(), Error> {
     ];
 
     poise::builtins::paginate(ctx, pages).await?;
+
+    Ok(())
+}
+
+#[poise::command(prefix_command, slash_command)]
+pub async fn ping(ctx: Context<'_>) -> CommandResult {
+
+    let context = ctx.serenity_context().clone();
+    let msg : &Message = &context.http.get_message(ctx.channel_id().0, context.shard_id).await?;
+
+    let now = Utc::now();
+    let created = DateTime::<Utc>::from_utc(msg.timestamp.naive_utc(), Utc);
+    let response_time = now.signed_duration_since(created).num_milliseconds();
+
+    let mut color = "GREEN";
+    let mut response_time_string = response_time.to_string();
+
+    if response_time < 100 {
+        response_time_string = format!("0{response_time_string}ms");
+    } else if response_time >= 100 && response_time < 500 {
+        color = "YELLOW";
+    } else {
+        color = "RED";
+    }
+
+    ctx.say(format!("**Pong! El tiempo de respuesta del Bot es de `{response_time_string}`ms {color}**")).await?;
 
     Ok(())
 }

@@ -14,3 +14,4 @@ fn main() {
 }
 ```
 
+Más información en [**Rust Book: Generics**](https://phosphorus-m.github.io/rust-book-es/ch10-00-generics.html)

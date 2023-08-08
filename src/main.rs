@@ -19,8 +19,8 @@ async fn main() {
             rust(), leave(), play(),
             pause(), resume(), stop(),
             skip(), ban(), unban(),
-            ping(), test(), create(),
-            set_voice(), newvoice(),
+            paginate(), test(), create(),
+            set_voice(), newvoice(), ping(),
         ],
         prefix_options: poise::PrefixFrameworkOptions {
             prefix: Some("$".into()),

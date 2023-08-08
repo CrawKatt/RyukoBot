@@ -5,13 +5,14 @@ la elección de una opción y otra.
 ```rust
 fn main() {
     let color = "verde";
-        if color == "rojo" {
-            println!("El color es rojo");
-        } else if color == "azul" {
-            println!("El color es azul");
-        } else {
-            println!("El color es otro");
-        }
+    if color == "rojo" {
+        println!("El color es rojo");
+    } else if color == "azul" {
+        println!("El color es azul");
+    } else {
+        println!("El color es otro");
+    }
 }
 ```
 
+Más información en [**Rust Book: Flujos de Control**](https://phosphorus-m.github.io/rust-book-es/ch03-05-control-flow.html#condicionales)

@@ -1,4 +1,9 @@
-use crate::utils::dependencies::*;
+use crate::utils::dependencies::{
+    Context,
+    Error,
+    User,
+    anyhow
+};
 
 #[poise::command(prefix_command, track_edits, slash_command)]
 pub async fn unban(
@@ -9,6 +14,7 @@ pub async fn unban(
 
     let current_user = ctx.serenity_context().http.get_current_user().await?;
     let current_member = guild_id.member(&ctx.serenity_context(), current_user.id).await?;
+    let author = ctx.author();
 
     let has_permission = current_member
         .permissions(ctx.serenity_context())?
@@ -20,12 +26,12 @@ pub async fn unban(
     }
 
     if let Err(e) = guild_id.unban(&ctx.serenity_context(), user.id).await {
-        ctx.say(format!("No se pudo desbanear al usuario: {}", e)).await?;
+        ctx.say(format!("No se pudo desbanear al usuario: {e}")).await?;
     } else {
         ctx.send(|f| f
             .embed(|f| f
                 .color(0x00ff00)
-                .description(format!("**{} ha sido desbaneado por {}!**", user, ctx.author()))
+                .description(format!("**{user} ha sido desbaneado por {author}!**"))
             )
         ).await?;
     }

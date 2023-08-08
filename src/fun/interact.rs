@@ -1,4 +1,11 @@
-use crate::utils::dependencies::*;
+use crate::utils::dependencies::{
+    CommandResult,
+    Context,
+    FromStr,
+    User,
+    autocomplete_actions,
+    random
+};
 
 /// Interact with other users with a gif
 ///
@@ -30,6 +37,7 @@ pub async fn interact(
         "kick" => format!("{} pateo a {}", ctx.author(), user),
         "punch" => format!("{} le dio un puñetazo a {}", ctx.author(), user),
         "shoot" => format!("{} le disparo a {}", ctx.author(), user),
+        "yeet" => format!("{} mando a {} a la punta del cerro", ctx.author(), user),
         _ => {
             println!("{} no es una categoria valida", action.clone());
             return Ok(())
@@ -40,7 +48,7 @@ pub async fn interact(
         .embed(|f| f
             .color(random_color)
             .description(msg)
-            .footer(|f| f.text(format!("Anime: {}", anime_name)))
+            .footer(|f| f.text(format!("Anime: {anime_name}")))
             .image(random_gif.url)
         )
     ).await?;

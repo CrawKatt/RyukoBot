@@ -25,3 +25,4 @@ En programación, tenemos distintos tipos de operadores para manejar datos en nu
 En Rust, los operadores básicos son los mismos que en la mayoría de los lenguajes de programación, \
 y se utilizan para realizar operaciones aritméticas y lógicas básicas.
 
+Más información en [**Rust Book: Operadores**](https://phosphorus-m.github.io/rust-book-es/appendix-02-operators.html)
