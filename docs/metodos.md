@@ -25,3 +25,4 @@ fn main() {
 }
 ```
 
+Más información en [**Rust Book: Methods**](https://phosphorus-m.github.io/rust-book-es/ch05-03-method-syntax.html)

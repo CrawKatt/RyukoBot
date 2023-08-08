@@ -41,6 +41,7 @@ pub use crate::commands::*;
 pub use crate::audio::*;
 pub use crate::admin::*;
 pub use crate::fun::*;
+use crate::utils::autocomplete_arguments::{AUTOCOMPLETE_ACTIONS, AUTOCOMPLETE_INTERACTS};
 
 // Re-export all utils
 pub use crate::utils::on_error;
@@ -60,7 +61,7 @@ pub async fn autocomplete_actions<'a>(
     _ctx: Context<'_>,
     partial: &'a str,
 ) -> impl Stream<Item = String> + 'a {
-    futures::stream::iter(&["hug", "kiss", "kick", "slap", "punch", "shoot"])
+    futures::stream::iter(AUTOCOMPLETE_ACTIONS)
         .filter(move |name| futures::future::ready(name.starts_with(partial)))
         .map(|name| name.to_string())
 }
@@ -69,11 +70,12 @@ pub async fn autocomplete_status<'a>(
     _ctx: Context<'_>,
     partial: &'a str,
 ) -> impl Stream<Item = String> + 'a {
-    futures::stream::iter(&["cry", "dance", "bored", "blush", "happy" ])
+    futures::stream::iter(AUTOCOMPLETE_INTERACTS)
         .filter(move |name| futures::future::ready(name.starts_with(partial)))
         .map(|name| name.to_string())
 }
 
+/// # Panic if docs folder not found
 pub async fn autocomplete_concepts<'a>(
     _ctx: Context<'_>,
     partial: &'a str,

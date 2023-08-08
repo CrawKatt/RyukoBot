@@ -18,3 +18,4 @@ Estos son solo algunos de los tipos de datos que puedes encontrar en Rust. \
 Cada uno tiene sus propias características y se utilizan para diferentes propósitos en la \
 programación.
 
+Más información en [**Rust Book: Tipos de Datos**](https://phosphorus-m.github.io/rust-book-es/ch03-02-data-types.html)

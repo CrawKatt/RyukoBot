@@ -12,3 +12,4 @@ fn main() {
 }
 ```
 
+Más información en [**Rust Book: Closures**](https://phosphorus-m.github.io/rust-book-es/ch13-01-closures.html)

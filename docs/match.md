@@ -16,3 +16,4 @@ fn main() {
 }
 ```
 
+Más información en [**Rust Book: Match**](https://phosphorus-m.github.io/rust-book-es/ch06-02-match.html)

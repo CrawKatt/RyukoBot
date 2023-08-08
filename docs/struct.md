@@ -18,3 +18,4 @@ fn main() {
 }
 ```
 
+Más información en [**Rust Book: Struct**](https://phosphorus-m.github.io/rust-book-es/ch05-01-defining-structs.html)

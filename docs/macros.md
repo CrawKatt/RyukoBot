@@ -14,3 +14,4 @@ fn main() {
 }
 ```
 
+Más información en [**Rust Book: Macros**](https://phosphorus-m.github.io/rust-book-es/ch19-06-macros.html)

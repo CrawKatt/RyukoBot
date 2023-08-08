@@ -13,3 +13,5 @@ fn main() {
     }
 }
 ```
+
+Más información en [**Rust Book: Control Flow**](https://phosphorus-m.github.io/rust-book-es/ch06-03-if-let.html)

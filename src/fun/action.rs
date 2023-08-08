@@ -1,8 +1,12 @@
-use crate::utils::dependencies::*;
+use crate::utils::dependencies::{
+    Context,
+    Error,
+    FromStr,
+    autocomplete_status,
+    random
+};
 
-/// Show help docs for learning rust
-///
-/// Enter `/explain match` to vote for pumpkins
+/// Send a gif with a status action
 #[poise::command(prefix_command, slash_command)]
 pub async fn act(
     ctx: Context<'_>,
@@ -13,13 +17,15 @@ pub async fn act(
     let random_color: u32 = random::<u32>() % 0xFFFFFF;
     let random_gif = nekosbest::get(nekosbest::Category::from_str(&action).unwrap()).await?;
     let anime_name = random_gif.details.try_into_gif().unwrap().anime_name;
+    let author = ctx.author();
 
     let msg = match action.as_str() {
-        "blush" => format!("{} Se sonroja", ctx.author()),
-        "bored" => format!("{} Esta aburrido", ctx.author()),
-        "cry" => format!("{} Esta llorando", ctx.author()),
-        "dance" => format!("{} Esta bailando", ctx.author()),
-        "happy" => format!("{} Esta feliz", ctx.author()),
+        "blush" => format!("{author} Se sonroja"),
+        "bored" => format!("{author} Esta aburrido"),
+        "cry" => format!("{author} Esta llorando"),
+        "dance" => format!("{author} Esta bailando"),
+        "happy" => format!("{author} Esta feliz"),
+        "laugh" => format!("{author} Se ríe a carcajadas"),
         _ => {
             println!("{} no es una categoría valida", action.clone());
             return Ok(())
@@ -30,7 +36,7 @@ pub async fn act(
         .embed(|f| f
             .color(random_color)
             .description(msg)
-            .footer(|f| f.text(format!("Anime: {}", anime_name)))
+            .footer(|f| f.text(format!("Anime: {anime_name}")))
             .image(random_gif.url)
         )
     ).await?;
