@@ -2,7 +2,7 @@ use super::dependencies::{Data, Error};
 
 /// # Panics
 /// if the bot fails to start or not have a Discord token
-pub async fn on_error(error: poise::FrameworkError<'_, Data, Error>) {
+pub async fn err_handler(error: poise::FrameworkError<'_, Data, Error>) {
     // This is our custom error handler
     // They are many errors that can occur, so we only handle the ones we want to customize
     // and forward the rest to the default handler

@@ -28,7 +28,7 @@ async fn main() {
             ..Default::default()
         },
         /// The global error handler for all error cases that may occur
-        on_error: |error| Box::pin(on_error(error)),
+        on_error: |error| Box::pin(err_handler(error)),
         /// This code is run before every command
         pre_command: |ctx| {
             Box::pin(async move {
