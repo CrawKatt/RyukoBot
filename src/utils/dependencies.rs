@@ -44,7 +44,7 @@ pub use crate::fun::*;
 use crate::utils::autocomplete_arguments::{AUTOCOMPLETE_ACTIONS, AUTOCOMPLETE_INTERACTS};
 
 // Re-export all utils
-pub use crate::utils::on_error;
+pub use crate::utils::*;
 
 // Types used by all command functions
 pub type CommandResult = Result<(), Error>;
