@@ -57,20 +57,20 @@ pub struct Data {
 }
 
 /// Autocomplete functions for slash commands
+pub async fn autocomplete_interacts<'a>(
+    _ctx: Context<'_>,
+    partial: &'a str,
+) -> impl Stream<Item = String> + 'a {
+    futures::stream::iter(AUTOCOMPLETE_INTERACTS)
+        .filter(move |name| futures::future::ready(name.starts_with(partial)))
+        .map(|name| name.to_string())
+}
+
 pub async fn autocomplete_actions<'a>(
     _ctx: Context<'_>,
     partial: &'a str,
 ) -> impl Stream<Item = String> + 'a {
     futures::stream::iter(AUTOCOMPLETE_ACTIONS)
-        .filter(move |name| futures::future::ready(name.starts_with(partial)))
-        .map(|name| name.to_string())
-}
-
-pub async fn autocomplete_status<'a>(
-    _ctx: Context<'_>,
-    partial: &'a str,
-) -> impl Stream<Item = String> + 'a {
-    futures::stream::iter(AUTOCOMPLETE_INTERACTS)
         .filter(move |name| futures::future::ready(name.starts_with(partial)))
         .map(|name| name.to_string())
 }

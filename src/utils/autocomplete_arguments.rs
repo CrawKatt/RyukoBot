@@ -1,11 +1,9 @@
 pub const AUTOCOMPLETE_ACTIONS: &[&str] = &[
-    "kiss",
-    "hug",
-    "pat",
-    "slap",
-    "kick",
-    "punch",
-    "shoot",
+    "happy",
+    "cry",
+    "dance",
+    "bored",
+    "blush",
     "laugh"
 ];
 

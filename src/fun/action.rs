@@ -2,7 +2,7 @@ use crate::utils::dependencies::{
     Context,
     Error,
     FromStr,
-    autocomplete_status,
+    autocomplete_actions,
     random
 };
 
@@ -10,7 +10,7 @@ use crate::utils::dependencies::{
 #[poise::command(prefix_command, slash_command)]
 pub async fn act(
     ctx: Context<'_>,
-    #[autocomplete = "autocomplete_status"]
+    #[autocomplete = "autocomplete_actions"]
     #[description = "status to act"] action: String,
 ) -> Result<(), Error> {
 
