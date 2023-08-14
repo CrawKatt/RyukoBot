@@ -1,4 +1,8 @@
-use utils::dependencies::*;
+use utils::dependencies::{
+    Data, Duration, SerenityInit, act, ban, create, err_handler, help,
+    interact, leave, newvoice, paginate, pause, ping, play, poise_serenity,
+    resume, rust, set_voice, skip, stop, test, unban, var
+};
 
 pub mod commands;
 pub mod utils;

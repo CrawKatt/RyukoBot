@@ -3,7 +3,7 @@ use crate::utils::dependencies::{
     Context,
     FromStr,
     User,
-    autocomplete_actions,
+    autocomplete_interacts,
     random
 };
 
@@ -16,7 +16,7 @@ use crate::utils::dependencies::{
 #[poise::command(prefix_command, track_edits, slash_command)]
 pub async fn interact(
     ctx: Context<'_>,
-    #[autocomplete = "autocomplete_actions"]
+    #[autocomplete = "autocomplete_interacts"]
     #[description = "action to do with gif"]
     action: String,
 
@@ -30,14 +30,14 @@ pub async fn interact(
 
     let random_color: u32 = random::<u32>() % 0xFFFFFF;
     let msg = match action.as_str() {
-        "kiss" => format!("{} beso a {}", ctx.author(), user),
-        "hug" => format!("{} abrazo a {}", ctx.author(), user),
-        "pat" => format!("{} acaricio a {}", ctx.author(), user),
-        "slap" => format!("{} cacheteo a {}", ctx.author(), user),
-        "kick" => format!("{} pateo a {}", ctx.author(), user),
+        "kiss" => format!("{} besó a {}", ctx.author(), user),
+        "hug" => format!("{} abrazó a {}", ctx.author(), user),
+        "pat" => format!("{} acarició a {}", ctx.author(), user),
+        "slap" => format!("{} cacheteó a {}", ctx.author(), user),
+        "kick" => format!("{} pateó a {}", ctx.author(), user),
         "punch" => format!("{} le dio un puñetazo a {}", ctx.author(), user),
-        "shoot" => format!("{} le disparo a {}", ctx.author(), user),
-        "yeet" => format!("{} mando a {} a la punta del cerro", ctx.author(), user),
+        "shoot" => format!("{} le disparó a {}", ctx.author(), user),
+        "yeet" => format!("{} mandó a {} a la punta del cerro", ctx.author(), user),
         _ => {
             println!("{} no es una categoria valida", action.clone());
             return Ok(())
