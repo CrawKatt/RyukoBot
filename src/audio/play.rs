@@ -45,9 +45,9 @@ async fn play_common(ctx: Context<'_>, term: String, url: bool) -> CommandResult
         .is_some();
 
     if !already_playing {
-        ctx.say(format!("Añadido a la cola: {}", term)).await?;
+        ctx.say(format!("Añadido a la cola: {term}")).await?;
     }
-    ctx.say(format!("Reproduciendo: {}", term)).await?;
+    ctx.say(format!("Reproduciendo: {term}")).await?;
 
     Ok(())
 }

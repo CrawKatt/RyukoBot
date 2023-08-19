@@ -26,6 +26,8 @@ pub use std::{
     time::Duration,
     str::FromStr
 };
+pub use std::fs::OpenOptions;
+pub use std::io::Write;
 
 // Serde Dependencies
 pub use serde::{
