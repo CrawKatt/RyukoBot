@@ -44,15 +44,12 @@ pub async fn create_channel(
 ) -> Result<(), Error> {
     let guild_id = ctx.guild_id().ok_or_else(|| anyhow!("Couldn't get guild"))?;
 
-    let config = load_config().await?;
+    let config = load_config()?;
 
-    let category = match config {
-        Some(id) => id,
-        None => {
+    let Some(category) = config else {
             ctx.say("No se ha establecido un canal de voz").await?;
             return Ok(());
-        }
-    };
+        };
 
     let category_id = ChannelId(category.into());
 
@@ -92,7 +89,7 @@ async fn save_config(serialized: String) -> Result<(), Error> {
     Ok(())
 }
 
-async fn load_config() -> Result<Option<ChannelId>, Error> {
+fn load_config() -> Result<Option<ChannelId>, Error> {
     let mut file = File::open("config.json")?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;

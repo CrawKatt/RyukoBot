@@ -12,7 +12,8 @@ pub mod admin;
 
 #[tokio::main]
 async fn main() {
-    env_logger::init();
+
+    pretty_env_logger::init();
     dotenv::dotenv().ok();
 
     // FrameworkOptions contains all of poise's configuration option in one struct

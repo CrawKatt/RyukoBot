@@ -4,8 +4,13 @@ use crate::utils::dependencies::{
     FromStr,
     User,
     autocomplete_interacts,
-    random
+    random,
+    OpenOptions,
+    Write,
 };
+
+use log;
+use crate::log_error;
 
 /// Interact with other users with a gif
 ///
@@ -25,7 +30,15 @@ pub async fn interact(
 
 ) -> CommandResult {
 
-    let random_gif = nekosbest::get(nekosbest::Category::from_str(&action).unwrap()).await?;
+    let category_result = nekosbest::Category::from_str(&action);
+    let random_gif = match category_result {
+        Ok(category) => nekosbest::get(category).await?,
+        Err(error) => {
+            log_error!("Error parsing category: {error}");
+            return Ok(());
+        }
+    };
+
     let anime_name = random_gif.details.try_into_gif().unwrap().anime_name;
 
     let random_color: u32 = random::<u32>() % 0xFFFFFF;
@@ -39,7 +52,7 @@ pub async fn interact(
         "shoot" => format!("{} le disparó a {}", ctx.author(), user),
         "yeet" => format!("{} mandó a {} a la punta del cerro", ctx.author(), user),
         _ => {
-            println!("{} no es una categoria valida", action.clone());
+            log::info!("{} no es una categoria valida", action.clone());
             return Ok(())
         }
     };

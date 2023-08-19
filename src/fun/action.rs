@@ -1,9 +1,12 @@
+use crate::log_error;
 use crate::utils::dependencies::{
     Context,
     Error,
     FromStr,
     autocomplete_actions,
-    random
+    random,
+    OpenOptions,
+    Write,
 };
 
 /// Send a gif with a status action
@@ -27,7 +30,7 @@ pub async fn act(
         "happy" => format!("{author} Esta feliz"),
         "laugh" => format!("{author} Se ríe a carcajadas"),
         _ => {
-            println!("{} no es una categoría valida", action.clone());
+            log_error!("{} no es una categoría valida", action.clone());
             return Ok(())
         }
     };
