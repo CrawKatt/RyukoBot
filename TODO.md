@@ -1,4 +1,4 @@
-TODO
+Tareas Pendientes
 
 * [ ] Crear una función de AutoRol para verificar miembros nuevos en un servidor
 * [ ] Crear una función que permita hacer canales de voz al entrar en un canal de voz designado
