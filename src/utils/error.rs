@@ -23,7 +23,9 @@ pub async fn err_handler(error: poise::FrameworkError<'_, Data, Error>) {
 macro_rules! log_error {
     ($($arg:tt)*) => {
         {
-            let error_msg = format!("Error: {}\n", format_args!($($arg)*));
+            use chrono::Local;
+            let current_time = Local::now();
+            let error_msg = format!("[{}] Error: {}\n", current_time.format("%Y-%m-%d %H:%M:%S"), format_args!($($arg)*));
 
             // Imprimir en la consola
             eprintln!("{}", error_msg);
