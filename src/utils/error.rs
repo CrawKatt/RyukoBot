@@ -19,27 +19,35 @@ pub async fn err_handler(error: poise::FrameworkError<'_, Data, Error>) {
     }
 }
 
+/// # Log_error
+/// ## English
+/// Log an error in the console and in the log file
+/// ## Español
+/// Imprime un error en la consola y en un archivo de log
 #[macro_export]
 macro_rules! log_error {
     ($($arg:tt)*) => {
         {
-            let error_msg = format!("Error: {}\n", format_args!($($arg)*));
+            // Obtener la hora actual y formatearla
+            let current_time = Local::now();
+            let error_msg = format!("[{}] Error: {}\n", current_time.format("%Y-%m-%d %H:%M:%S"), format_args!($($arg)*));
 
-            // Imprimir en la consola
+            // Imprimir mensaje de error en la consola
             eprintln!("{}", error_msg);
 
             // Guardar en el archivo de log
-            if let Ok(mut file) = OpenOptions::new()
-                .create(true)
-                .append(true)
-                .open("log.txt")
-            {
-                if let Err(err) = write!(file, "{}", error_msg) {
-                    eprintln!("Failed to write to log file: {}", err);
-                }
-            } else {
+            let Ok(mut file) = OpenOptions::new().create(true).append(true).open("log.txt") else {
                 eprintln!("Failed to open log file.");
-            }
+                return Ok(())
+            };
+
+            // Si no falla al escribir en el archivo de log, retornar Ok(())
+            let Err(err) = write!(file, "{error_msg}") else {
+                return Ok(())
+            };
+
+            // Si falla al escribir en el archivo de log, imprimir el error
+            eprintln!("Failed to write to log file: {}", err);
         }
     };
 }

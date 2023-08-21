@@ -7,6 +7,7 @@ use crate::utils::dependencies::{
     random,
     OpenOptions,
     Write,
+    Local
 };
 
 /// Send a gif with a status action
