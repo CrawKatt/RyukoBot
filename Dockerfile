@@ -5,7 +5,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     cmake \
     openssl \
     libssl-dev \
-    pkg-config
+    pkg-config \
+    ffmpeg \
+    python3 \
+    python3-pip
+
+RUN pip3 install --upgrade yt-dlp
 
 WORKDIR /app
 

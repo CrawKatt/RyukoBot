@@ -1,3 +1,8 @@
+use axum::{extract::State, Json, Router};
+use serde_json::Value;
+use std::{net::SocketAddr, sync::Arc};
+use tokio::sync::Mutex;
+
 use utils::dependencies::{
     Data, Duration, SerenityInit, act, ban, create, err_handler, help,
     interact, leave, newvoice, paginate, pause, ping, play, poise_serenity,
@@ -11,10 +16,29 @@ pub mod audio;
 pub mod admin;
 
 #[tokio::main]
-async fn main() {
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+
+    tokio::spawn(async move {
+        let port = var("PORT")
+            .unwrap_or_else(|_| "8080".to_string())
+            .parse::<u16>()
+            .expect("could not parse PORT env var");
+
+        let state = CountState {
+            counter: Arc::new(Mutex::new(0)),
+        };
+
+        let app = Router::new()
+            .route("/", axum::routing::get(root))
+            .with_state(state);
+
+        axum::Server::bind(&SocketAddr::from(([0, 0, 0, 0], port)))
+            .serve(app.into_make_service())
+            .await.expect("TODO: panic message");
+    });
 
     pretty_env_logger::init();
-    dotenv::dotenv().ok();
+    dotenv::from_filename("./.env").ok();
 
     // FrameworkOptions contains all of poise's configuration option in one struct
     // Every option can be omitted to use its default value
@@ -73,9 +97,9 @@ async fn main() {
             var("DISCORD_TOKEN")
                 .expect("Missing `DISCORD_TOKEN` env var, see README for more information."),
         )
-        .setup(move |ctx, _ready, framework| {
+        .setup(move |ctx, ready, framework| {
             Box::pin(async move {
-                println!("Logged in as {}", _ready.user.name);
+                println!("Logged in as {}", ready.user.name);
                 poise::builtins::register_globally(ctx, &framework.options().commands).await?;
                 Ok(Data {
                     client: Default::default(),
@@ -89,4 +113,20 @@ async fn main() {
         .run()
         .await
         .unwrap();
+
+    Ok(())
+}
+
+async fn root(state: State<CountState>) -> Json<Value> {
+    let mut c = state.0.counter.lock().await;
+    *c += 1;
+
+    println!("counter: {0}", *c);
+
+    Json(serde_json::json!({ "counter": *c }))
+}
+
+#[derive(Clone)]
+struct CountState {
+    counter: Arc<Mutex<usize>>,
 }
