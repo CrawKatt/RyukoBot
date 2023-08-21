@@ -37,6 +37,7 @@ macro_rules! log_handle {
                 eprintln!("Failed to open log file: {}", err);
             }
 
+            // Escribir en el archivo de log
             if let Ok(mut file) = log_result {
                 if let Err(err) = write!(file, "{}", error_msg) {
                     eprintln!("Failed to write to log file: {}", err);
