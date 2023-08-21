@@ -22,4 +22,4 @@ Si tomamos nuestro ejemplo el índice en dicho ejemplo es:
 3 -> 4
 4 -> 5
 ```
-Más información en [**Rust Book: Tuplas**](https://phosphorus-m.github.io/rust-book-es/ch03-02-data-types.html#el-tipo-tupla)
+Más información en [**Rust Book: Tuplas**](https://rustlanges.github.io/rust-book-es/ch03-02-data-types.html#el-tipo-tupla)

@@ -30,4 +30,4 @@ referencias s1 y s2 deben vivir al menos durante el tiempo de vida 'a.
 Al intentar imprimir el resultado fuera del bloque de código de string2, obtendrías un error de
 tiempo de compilación porque resultado hace referencia a string2, que ya no es válido.
 
-Más información en [**Rust Book: Lifetimes**](https://phosphorus-m.github.io/rust-book-es/ch10-03-lifetime-syntax.html)
+Más información en [**Rust Book: Lifetimes**](https://rustlanges.github.io/rust-book-es/ch10-03-lifetime-syntax.html)

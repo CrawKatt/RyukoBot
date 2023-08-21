@@ -1,3 +1,4 @@
+use crate::log_error;
 use crate::utils::dependencies::{
     CommandResult,
     Context,
@@ -8,9 +9,6 @@ use crate::utils::dependencies::{
     OpenOptions,
     Write,
 };
-
-use log;
-use crate::log_error;
 
 /// Interact with other users with a gif
 ///
@@ -30,6 +28,7 @@ pub async fn interact(
 
 ) -> CommandResult {
 
+    let random_color: u32 = random::<u32>() % 0xFFFFFF;
     let category_result = nekosbest::Category::from_str(&action);
     let random_gif = match category_result {
         Ok(category) => nekosbest::get(category).await?,
@@ -40,17 +39,17 @@ pub async fn interact(
     };
 
     let anime_name = random_gif.details.try_into_gif().unwrap().anime_name;
+    let author = ctx.author();
 
-    let random_color: u32 = random::<u32>() % 0xFFFFFF;
     let msg = match action.as_str() {
-        "kiss" => format!("{} besó a {}", ctx.author(), user),
-        "hug" => format!("{} abrazó a {}", ctx.author(), user),
-        "pat" => format!("{} acarició a {}", ctx.author(), user),
-        "slap" => format!("{} cacheteó a {}", ctx.author(), user),
-        "kick" => format!("{} pateó a {}", ctx.author(), user),
-        "punch" => format!("{} le dio un puñetazo a {}", ctx.author(), user),
-        "shoot" => format!("{} le disparó a {}", ctx.author(), user),
-        "yeet" => format!("{} mandó a {} a la punta del cerro", ctx.author(), user),
+        "kiss" => format!("{author} besó a {user}"),
+        "hug"  => format!("{author} abrazó a {user}"),
+        "pat" => format!("{author} acarició a {user}"),
+        "slap" => format!("{author} cacheteó a {user}"),
+        "kick" => format!("{author} pateó a {user}"),
+        "punch" => format!("{author} le dio un puñetazo a {user}"),
+        "shoot" => format!("{author} le disparó a {user}"),
+        "yeet" => format!("{author} mandó a {user} a la punta del cerro"),
         _ => {
             log::info!("{} no es una categoria valida", action.clone());
             return Ok(())
@@ -64,7 +63,8 @@ pub async fn interact(
             .footer(|f| f.text(format!("Anime: {anime_name}")))
             .image(random_gif.url)
         )
-    ).await?;
+    )
+    .await?;
 
     Ok(())
 }

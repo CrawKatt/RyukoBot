@@ -9,4 +9,4 @@ fn main() {
 A diferencia de las variables, el nombre de las constantes se escribe en mayúsculas y su tipo de \
 dato debe ser especificado.
 
-Más información en [**Rust Book: Constants**](https://phosphorus-m.github.io/rust-book-es/ch03-01-variables-and-mutability.html#constantes)
+Más información en [**Rust Book: Constants**](https://rustlanges.github.io/rust-book-es/ch03-01-variables-and-mutability.html#constantes)

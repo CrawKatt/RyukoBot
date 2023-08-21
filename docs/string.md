@@ -8,4 +8,4 @@ fn main() {
 }
 ```
 
-Más información en [**Rust Book: String**](https://phosphorus-m.github.io/rust-book-es/ch08-02-strings.html)
+Más información en [**Rust Book: String**](https://rustlanges.github.io/rust-book-es/ch08-02-strings.html)

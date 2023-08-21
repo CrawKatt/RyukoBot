@@ -12,4 +12,4 @@ fn main() {
 }
 ```
 
-Más información en [**Rust Book: Iterators**](https://phosphorus-m.github.io/rust-book-es/ch13-02-iterators.html)
+Más información en [**Rust Book: Iterators**](https://rustlanges.github.io/rust-book-es/ch13-02-iterators.html)

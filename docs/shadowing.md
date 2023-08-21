@@ -13,4 +13,4 @@ fn main() {
     println!("El valor de x es: {}", x);
 }
 ```
-Más información en [**Rust Book: Shadowing**](https://phosphorus-m.github.io/rust-book-es/ch03-01-variables-and-mutability.html#shadowing)
+Más información en [**Rust Book: Shadowing**](https://rustlanges.github.io/rust-book-es/ch03-01-variables-and-mutability.html#shadowing)

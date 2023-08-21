@@ -18,4 +18,4 @@ En este ejemplo, tenemos una función tomar_prestado que toma una referencia a u
 La referencia s se presta a la función tomar_prestado, pero no se libera de la memoria cuando sale \
 del scope, ya que no es el dueño del valor.
 
-Más información en [**Rust Book: Ownership**](https://phosphorus-m.github.io/rust-book-es/ch04-00-understanding-ownership.html)
+Más información en [**Rust Book: Ownership**](https://rustlanges.github.io/rust-book-es/ch04-00-understanding-ownership.html)
