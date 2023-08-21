@@ -1,8 +1,12 @@
+use crate::log_error;
 use crate::utils::dependencies::{
     Context,
     Error,
     User,
-    anyhow
+    anyhow,
+    OpenOptions,
+    Local,
+    Write,
 };
 
 /// Ban a user from the server
@@ -32,6 +36,7 @@ pub async fn ban(
 
     if let Err(e) = member.ban_with_reason(&ctx.serenity_context(), 0, "Banned by bot").await {
         ctx.say(format!("Failed to ban user: {e}")).await?;
+        log_error!("Failed to ban user: {e}");
     } else {
         let razon =  razon.map_or_else(|| "No especificada".to_string(), |reason| reason);
 

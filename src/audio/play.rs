@@ -44,6 +44,17 @@ async fn play_common(ctx: Context<'_>, term: String, url: bool) -> CommandResult
         .current()
         .is_some();
 
+    if let Some(song) = handler.queue().current() {
+        let song = song.metadata();
+        ctx.send(|m| m
+            .embed(|e| e
+                .title("Now Playing")
+                .description(format!("[{:?}]({:?})", song.clone().title, song.clone().source_url))
+                .footer(|f| f.text(format!("Queued by {}", ctx.author().mention())))
+            )
+        ).await?;
+    }
+
     if !already_playing {
         ctx.say(format!("Añadido a la cola: {term}")).await?;
     }
