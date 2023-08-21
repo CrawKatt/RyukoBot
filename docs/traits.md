@@ -29,4 +29,4 @@ fn main() {
 }
 ```
 
-Más información en [**Rust Book: Traits**](https://phosphorus-m.github.io/rust-book-es/ch10-02-traits.html)
+Más información en [**Rust Book: Traits**](https://rustlanges.github.io/rust-book-es/ch10-02-traits.html)

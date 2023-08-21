@@ -11,4 +11,4 @@ fn main() {
 }
 ```
 
-Más información en [**Rust Book: Funciones**](https://phosphorus-m.github.io/rust-book-es/ch03-03-how-functions-work.html)
+Más información en [**Rust Book: Funciones**](https://rustlanges.github.io/rust-book-es/ch03-03-how-functions-work.html)

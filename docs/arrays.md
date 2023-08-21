@@ -20,4 +20,4 @@ Si tomamos nuestro ejemplo el índice en dicho ejemplo es:
 4 -> 5
 ```
 
-Más información en [**Rust Book: Arrays**](https://phosphorus-m.github.io/rust-book-es/ch03-02-data-types.html#el-tipo-arreglo)
+Más información en [**Rust Book: Arrays**](https://rustlanges.github.io/rust-book-es/ch03-02-data-types.html#el-tipo-arreglo)

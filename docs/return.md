@@ -12,4 +12,4 @@ fn sumar(x: i32, y: i32) -> i32 {
 }
 ```
 
-Más información en [**Rust Book: Funciones**](https://phosphorus-m.github.io/rust-book-es/ch03-03-how-functions-work.html#funciones-con-valores-de-retorno)
+Más información en [**Rust Book: Funciones**](https://rustlanges.github.io/rust-book-es/ch03-03-how-functions-work.html#funciones-con-valores-de-retorno)

@@ -17,4 +17,4 @@ fn main() {
 En Rust, no existe el `Null`, por lo que Option es una forma de representar la posibilidad de que \
 un valor no esté presente.
 
-Más información en [**Rust Book: Option**](https://phosphorus-m.github.io/rust-book-es/ch06-01-defining-an-enum.html#el-enum-option-y-sus-ventajas-sobre-los-valores-null)
+Más información en [**Rust Book: Option**](https://rustlanges.github.io/rust-book-es/ch06-01-defining-an-enum.html#el-enum-option-y-sus-ventajas-sobre-los-valores-null)

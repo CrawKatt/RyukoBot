@@ -14,6 +14,7 @@ pub async fn resume(ctx: Context<'_>) -> CommandResult {
         let handler = handler_lock.lock().await;
         let queue = handler.queue();
         let _ = queue.resume();
+
         if let Some(track) = queue.current() {
             ctx.say(format!("Reanudado {:?}", track.metadata().title)).await?;
         } else {

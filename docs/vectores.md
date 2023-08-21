@@ -28,4 +28,4 @@ Si tomamos nuestro ejemplo el índice en dicho ejemplo es:
 4 -> 5
 ```
 
-Más información en [**Rust Book: Vectores**](https://phosphorus-m.github.io/rust-book-es/ch08-01-vectors.html)
+Más información en [**Rust Book: Vectores**](https://rustlanges.github.io/rust-book-es/ch08-01-vectors.html)

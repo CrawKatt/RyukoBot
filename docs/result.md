@@ -21,4 +21,4 @@ fn dividir(dividendo: i32, divisor: i32) -> Result<i32, String> {
 }
 ```
 
-Más información en [**Rust Book: Manejo de errores con Result**](https://phosphorus-m.github.io/rust-book-es/ch09-02-recoverable-errors-with-result.html)
+Más información en [**Rust Book: Manejo de errores con Result**](https://rustlanges.github.io/rust-book-es/ch09-02-recoverable-errors-with-result.html)

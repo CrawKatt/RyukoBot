@@ -34,7 +34,7 @@ macro_rules! log_error {
                 .append(true)
                 .open("log.txt")
             {
-                if let Err(err) = writeln!(file, "{}", error_msg) {
+                if let Err(err) = write!(file, "{}", error_msg) {
                     eprintln!("Failed to write to log file: {}", err);
                 }
             } else {

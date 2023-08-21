@@ -18,4 +18,4 @@ fn cambiar(algun_string : &mut String) {
 ```
 En este ejemplo, estamos prestando una referencia mutable a la variable `hola` al llamar a la función `cambiar()`
 
-Más información en [**Rust Book: Referencias y Borrowing**](https://phosphorus-m.github.io/rust-book-es/ch04-02-references-and-borrowing.html)
+Más información en [**Rust Book: Referencias y Borrowing**](https://rustlanges.github.io/rust-book-es/ch04-02-references-and-borrowing.html)

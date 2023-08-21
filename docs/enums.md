@@ -9,4 +9,4 @@ enum Opcion {
 }
 ```
 
-Más información en [**Rust Book: Enums**](https://phosphorus-m.github.io/rust-book-es/ch06-01-defining-an-enum.html)
+Más información en [**Rust Book: Enums**](https://rustlanges.github.io/rust-book-es/ch06-01-defining-an-enum.html)

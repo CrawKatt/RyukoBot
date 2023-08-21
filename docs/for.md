@@ -28,4 +28,4 @@ fn main() {
 }
 ```
 
-Más información en [**Rust Book: Ciclo For**](https://phosphorus-m.github.io/rust-book-es/ch03-05-control-flow.html#bucle-a-trav%C3%A9s-de-una-colecci%C3%B3n-con-for)
+Más información en [**Rust Book: Ciclo For**](https://rustlanges.github.io/rust-book-es/ch03-05-control-flow.html#bucle-a-trav%C3%A9s-de-una-colecci%C3%B3n-con-for)

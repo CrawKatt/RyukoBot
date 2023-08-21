@@ -15,4 +15,4 @@ fn main() {
 }
 ```
 
-Más información en [**Rust Book: Flujos de Control**](https://phosphorus-m.github.io/rust-book-es/ch03-05-control-flow.html#condicionales)
+Más información en [**Rust Book: Flujos de Control**](https://rustlanges.github.io/rust-book-es/ch03-05-control-flow.html#condicionales)

@@ -14,4 +14,4 @@ fn main() {
 }
 ```
 
-Más información en [**Rust Book: Módulos**](https://phosphorus-m.github.io/rust-book-es/ch07-02-defining-modules-to-control-scope-and-privacy.html)
+Más información en [**Rust Book: Módulos**](https://rustlanges.github.io/rust-book-es/ch07-02-defining-modules-to-control-scope-and-privacy.html)
