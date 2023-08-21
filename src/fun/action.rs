@@ -21,15 +21,6 @@ pub async fn act(
     let random_color: u32 = random::<u32>() % 0xFFFFFF;
     let category_result = nekosbest::Category::from_str(&action);
 
-    let random_gif = if let Ok(category) = category_result {
-        nekosbest::get(category).await?
-    } else {
-        let error = category_result.err();
-        log_error!("Error parsing category: {:?}", error);
-        return Ok(());
-    };
-
-    /*
     let random_gif = match category_result {
         Ok(category) => nekosbest::get(category).await?,
         Err(error) => {
@@ -37,7 +28,6 @@ pub async fn act(
             return Ok(());
         }
     };
-    */
 
     let anime_name = random_gif.details.try_into_gif().unwrap().anime_name;
     let author = ctx.author();
