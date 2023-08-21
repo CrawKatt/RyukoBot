@@ -13,6 +13,9 @@ pub use serenity::async_trait;
 pub use serenity::prelude::Mentionable;
 pub use serenity::model::prelude::User;
 
+// Chrono Dependencies
+pub use chrono::Local;
+
 // Std Dependencies
 pub use futures::{
     Stream,

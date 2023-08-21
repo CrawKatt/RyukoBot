@@ -8,6 +8,7 @@ use crate::utils::dependencies::{
     random,
     OpenOptions,
     Write,
+    Local,
 };
 
 /// Interact with other users with a gif
