@@ -2,6 +2,7 @@ use poise::serenity_prelude;
 pub use crate::utils::dependencies::*;
 use chrono::{DateTime, Utc};
 use serenity::model::channel::Message;
+use crate::log_error;
 
 /// Show this help menu
 #[poise::command(prefix_command, track_edits, slash_command)]
@@ -34,8 +35,14 @@ pub async fn rust(
 
     let path = format!("docs/{concept}.md");
     match std::fs::read_to_string(path) {
-        Ok(data) => ctx.say(data).await?,
-        Err(_) => ctx.say("No such doc for that concept/topic").await?
+        Ok(data) => {
+            ctx.say(data).await?;
+        },
+
+        Err(e) => {
+            ctx.say("No such doc for that concept/topic").await?;
+            log_error!("No such doc for that concept/topic {e}");
+        }
     };
 
     Ok(())
