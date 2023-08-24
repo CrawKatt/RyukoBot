@@ -90,7 +90,7 @@ pub async fn autocomplete_concepts<'a>(
     };
 
     let mut files = vec![];
-    for entry in docs.into_iter() {
+    for entry in docs {
         let entry = entry.unwrap();
         let filename = entry.file_name().into_string().unwrap();
         let name = filename.split('.').next().unwrap();

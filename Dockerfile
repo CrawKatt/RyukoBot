@@ -18,4 +18,6 @@ COPY . .
 
 RUN cargo build --release
 
+EXPOSE 8080
+
 ENTRYPOINT ["/app/target/release/ryuko_bot_discord"]
